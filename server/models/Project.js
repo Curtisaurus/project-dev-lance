@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-const Role = require('./Role');
+const Teammate = require('./Teammate');
 
 const projectSchema = new Schema({
   name: {
@@ -30,17 +30,9 @@ const projectSchema = new Schema({
   acqFunds: {
     type: Number,
     required: true,
-    min: 0.99
+    min: 0.00
   },
-  team: [
-    {
-      role: Role.schema,
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-      }
-    }
-  ],
+  team: [Teammate.schema],
   tags: [String]
 });
 

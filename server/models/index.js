@@ -1,5 +1,5 @@
 const User = require('./User');
 const Project = require('./Project');
-const Role = require('./Role');
+const Teammate = require('./Teammate');
 
-module.exports = { User, Project, Role };
+module.exports = { User, Project, Teammate };
