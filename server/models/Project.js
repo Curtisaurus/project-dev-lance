@@ -32,11 +32,13 @@ const projectSchema = new Schema({
     required: true,
     min: 0.99
   },
-  members: [
+  team: [
     {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-      role: Role.schema
+      role: Role.schema,
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }
     }
   ],
   tags: [String]
