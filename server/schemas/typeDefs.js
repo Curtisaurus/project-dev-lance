@@ -29,23 +29,22 @@ const typeDefs = gql`
     projects: [Project]
   }
 
-  type Checkout {
-    session: ID
-  }
-
   type Auth {
     token: ID
     user: User
   }
 
   type Query {
-    projects: [Project]
+    allProjects: [Project]
+    userProjects(user: ID!): [Project]
     user: User
+    users: [User]
+    team(project: ID!): [Teammate]
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
+    addUser(email: String!, password: String!): Auth
+    addProject(name: String!, owner: ID!, ): Project
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
