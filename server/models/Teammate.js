@@ -11,6 +11,10 @@ const teammmateSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
+  },
+  project: {
+    type: Schema.Types.ObjectId,
+    ref: 'Project'
   }
 });
 

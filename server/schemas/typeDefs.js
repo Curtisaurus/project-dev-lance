@@ -1,37 +1,32 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Category {
+  type Teammate {
     _id: ID
-    name: String
+    role: String!
+    user: ID
+    project: ID
   }
 
-  type Product {
+  type Project {
     _id: ID
-    name: String
+    name: String!
+    owner: ID!
     description: String
     image: String
-    quantity: Int
-    price: Float
-    category: Category
-  }
-
-  type Order {
-    _id: ID
-    purchaseDate: String
-    products: [Product]
+    reqFunds: Float!
+    acqFunds: Float!
+    team: [Teammate]
+    investors: [User]
+    tags: [String]
   }
 
   type User {
     _id: ID
-    firstName: String
-    lastName: String
     email: String
-    orders: [Order]
-  }
-
-  type Checkout {
-    session: ID
+    githubUrl: String
+    linkedinUrl: String
+    projects: [Project]
   }
 
   type Auth {
@@ -40,19 +35,22 @@ const typeDefs = gql`
   }
 
   type Query {
-    categories: [Category]
-    products(category: ID, name: String): [Product]
-    product(_id: ID!): Product
+    allProjects: [Project]
+    userProjects(user: ID!): [Project]
+    allUsers: [User]
     user: User
-    order(_id: ID!): Order
-    checkout(products: [ID]!): Checkout
+    project(_id: ID!): Project
+    team(project: ID!): [Teammate]
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateProduct(_id: ID!, quantity: Int!): Product
+    addUser(email: String!, password: String!): Auth
+    addProject(name: String!, owner: ID!, description: String, image: String, reqFunds: Float!): Project
+    addTeammate(project: ID!, role: String!, user: ID): Teammate
+    updateTeammate(_id: ID!, role: String, user: ID): Teammate
+    updateUser(email: String, password: String, githubUrl: String, linkedinUrl: String): User
+    updateProject(_id: ID!, name: String, description: String, image: String, reqFunds: Float): Project
+    updateTags(project: ID!, tags[String]): Project
     login(email: String!, password: String!): Auth
   }
 `;
