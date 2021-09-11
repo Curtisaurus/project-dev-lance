@@ -1,3 +1,4 @@
+//are we using global state??
 import React, { createContext, useContext } from "react";
 import { useProductReducer } from './reducers'
 
