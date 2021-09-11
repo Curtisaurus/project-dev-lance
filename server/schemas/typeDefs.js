@@ -50,7 +50,7 @@ const typeDefs = gql`
     updateTeammate(_id: ID!, role: String, user: ID): Teammate
     updateUser(email: String, password: String, githubUrl: String, linkedinUrl: String): User
     updateProject(_id: ID!, name: String, description: String, image: String, reqFunds: Float): Project
-    updateTags(project: ID!, tags[String]): Project
+    updateTags(project: ID!, tags: [String]): Project
     login(email: String!, password: String!): Auth
   }
 `;
