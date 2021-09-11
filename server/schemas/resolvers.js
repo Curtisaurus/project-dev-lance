@@ -6,19 +6,25 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     allProjects: async () => {
-      return await Project.find();
+      return await Project.find().limit(12);
     },
-    userProjects: async (parent, { user }) => {
-      return await Project.find({ owner: user });
+    userProjects: async (parent, args, context) => {
+      return await Project.find({ owner: context.user._id });
+    },
+    projectByTag: async (parent, args) => {
+      return await Project.find({ $or: [{ name: { $in: args }}, { tags: { $in: args }}] });
     },
     user: async (parent, args, context) => {
-      return await User.findById(context.user._id);
+      return await User.findById(context.user._id).populate('projects');
     },
-    allUsers: async () => {
-      return await User.find();
+    project: async (parent, { projectId }) => {
+      return await Project.find({ _id: projectId }).populate('team').populate('investors');
     },
     team: async (parent, { project }) => {
       return await Teammate.find({ project: project });
+    },
+    investments: async (parent, args, context) => {
+      return await Project.find({ investors: context.user._id });
     }
   },
   Mutation: {
@@ -34,8 +40,8 @@ const resolvers = {
     addTeammate: async (parent, args) => {
       return await Teammate.create(args);
     },
-    updateTeammate: async (parent, args, context) => {
-      return await Teammate.findByIdAndUpdate(args, context.user._id, { new: true });
+    updateTeammate: async (parent, args) => {
+      return await Teammate.findByIdAndUpdate(args, { new: true });
     },
     updateUser: async (parent, args, context) => {
       if (context.user) {
@@ -47,8 +53,8 @@ const resolvers = {
     updateProject: async (parent, args) => {
       return await Project.findByIdAndUpdate(args, { new: true });
     },
-    updateTags: async (parent, args, context) => {
-      return await Project.findByIdAndUpdate(context.project._id, { $push: { tags: args}})
+    updateTags: async (parent, args) => {
+      return await Project.findByIdAndUpdate(args, { $push: { tags: args.tags}})
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
@@ -66,6 +72,9 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+    addFunding: async (parent, { project, funding }) => {
+      return await Project.findByIdAndUpdate(project, { $inc: { acqFunds: funding }});
     }
   }
 }

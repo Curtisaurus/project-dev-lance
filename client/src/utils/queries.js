@@ -1,49 +1,71 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_PRODUCTS = gql`
-  query getProducts($category: ID) {
-    products(category: $category) {
+export const QUERY_PROJECT = gql`
+  query getProjects($project: ID) {
+    projects(_id: $project) {
       _id
       name
-      description
-      price
-      quantity
-      image
-      category {
-        _id
+      owner {
+        name
       }
+      description
+      image
+      reqFunds
+      acqFunds
+      team {
+        role
+        user
+      }
+      investors {
+        name
+      }
+      tags
     }
   }
 `;
 
 export const QUERY_CHECKOUT = gql`
-  query getCheckout($products: [ID]!) {
+  query getCheckout($products: [ID]) {
     checkout(products: $products) {
       session
     }
   }
 `;
 
-export const QUERY_ALL_PRODUCTS = gql`
+export const QUERY_ALL_PROJECTS = gql`
   {
-    products {
+    projects {
       _id
       name
-      description
-      price
-      quantity
-      category {
+      owner {
         name
       }
+      description
+      image
+      reqFunds
+      acqFunds
+      team {
+        role
+        user
+      }
+      investors
+      tags
     }
   }
 `;
 
-export const QUERY_CATEGORIES = gql`
-  {
-    categories {
+export const QUERY_SEARCH_PROJECTS = gql`
+  query searchProjects($searchArray: [String]) {
+    projectbyTag(searchArray: $searchArray) {
       _id
       name
+      owner {
+        name
+      }
+      description
+      image
+      reqFunds
+      acqFunds
     }
   }
 `;
@@ -51,19 +73,16 @@ export const QUERY_CATEGORIES = gql`
 export const QUERY_USER = gql`
   {
     user {
-      firstName
-      lastName
-      orders {
-        _id
-        purchaseDate
-        products {
-          _id
-          name
-          description
-          price
-          quantity
-          image
-        }
+      _id
+      email
+      githubUrl
+      linkedinUrl
+      projects {
+        name
+        description
+        image
+        reqFunds
+        acqFunds
       }
     }
   }

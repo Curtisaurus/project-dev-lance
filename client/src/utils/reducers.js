@@ -1,4 +1,5 @@
 import { useReducer } from "react";
+// this all need to be updated
 import {
   UPDATE_PRODUCTS,
   ADD_TO_CART,
