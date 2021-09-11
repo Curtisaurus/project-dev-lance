@@ -33,6 +33,12 @@ const projectSchema = new Schema({
     min: 0.00
   },
   team: [Teammate.schema],
+  investors: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ],
   tags: [String]
 });
 
