@@ -8,14 +8,11 @@ const resolvers = {
     allProjects: async () => {
       return await Project.find();
     },
-    userProjects: async (parent, { user }) => {
-      return await Project.find({ owner: user });
+    userProjects: async (parent, args, context) => {
+      return await Project.find({ owner: context.user._id });
     },
     user: async (parent, args, context) => {
       return await User.findById(context.user._id);
-    },
-    allUsers: async () => {
-      return await User.find();
     },
     team: async (parent, { project }) => {
       return await Teammate.find({ project: project });

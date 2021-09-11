@@ -37,7 +37,6 @@ const typeDefs = gql`
   type Query {
     allProjects: [Project]
     userProjects(user: ID!): [Project]
-    allUsers: [User]
     user: User
     project(_id: ID!): Project
     team(project: ID!): [Teammate]

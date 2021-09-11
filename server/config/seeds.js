@@ -1,34 +1,33 @@
 const db = require('./connection');
-const { User, Teammate, Project } = require =('../models');
+const { User, Teammate, Project } = require('../models');
 
 db.once('open', async () => {
-    await User.deleteMany();
+    await User.deleteMany({});
 
-    const users = await User.create({
-        email: 'toddmcfarlane@marvel.com',
-        password: 'iamhulk'
-    });
-
-    const users = await User.create({
-        email: 'jeffdmcfarlane@marvel.com',
-        password: 'iamspiderman'
-    });
-
-    const users = await User.create({
-        email: 'mikedmcfarlane@marvel.com',
-        password: 'iamsuperman'
-    });
-    
-    const users = await User.create({
-        email: 'mikedmcfarlane@marvel.com',
-        password: 'iambatman'
-    });
+    const users = await User.insertMany([
+        {
+            email: 'toddmcfarlane@marvel.com',
+            password: 'iamhulk'
+        },
+        {
+            email: 'jeffdmcfarlane@marvel.com',
+            password: 'iamspiderman'
+        },
+        {
+            email: 'mikedmcfarlane@marvel.com',
+            password: 'iamsuperman'
+        },
+        {
+            email: 'jimmymcfarlane@marvel.com',
+            password: 'iambatman'
+        }
+    ]);
 
     console.log('users seeded');
  
     await Teammate.deleteMany();
 
-    const teammates = await Teammates.insertMany([
+    const teammates = await Teammate.insertMany([
         {role: 'Administrator'},
         {role: 'Professor'},
         {role: 'BackEnd Dev'},
@@ -44,16 +43,23 @@ db.once('open', async () => {
 
     const projects = await Project.insertMany([
         {name: 'Best Project EVERRRRRR',
-        owner: '01',
+        owner: users[0]._id,
         description: 'Most complex project to solve your real world needs ever',
         image: "https://gfycat.com/anxiousilliteratebabirusa",
         reqFunds: "50000",
         acqFunds: "45000"
         },
         {name: 'Wurst Project',
-        owner: '02',
+        owner: users[1]._id,
         description: 'It says hello world barely',
         image: "https://gfycat.com/courteoushandmadebutterfly",
+        reqFunds: "50000",
+        acqFunds: "45000"
+        },
+        {name: 'Ok Project',
+        owner: users[2]._id,
+        description: 'Literally Minesweeper',
+        image: "https://i.imgur.com/4zdNjKf.png",
         reqFunds: "50000",
         acqFunds: "45000"
         }
