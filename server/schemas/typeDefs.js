@@ -16,8 +16,8 @@ const typeDefs = gql`
     image: String
     reqFunds: Float!
     acqFunds: Float!
-    team: [Teammate]
-    investors: [User]
+    team: [ID]
+    investors: ID
     tags: [String]
   }
 
@@ -40,6 +40,7 @@ const typeDefs = gql`
     user: User
     project(_id: ID!): Project
     team(project: ID!): [Teammate]
+    investments(user: ID!): [Project]
   }
 
   type Mutation {

@@ -14,8 +14,14 @@ const resolvers = {
     user: async (parent, args, context) => {
       return await User.findById(context.user._id);
     },
+    project: async (parent, { projectId }) => {
+      return await Project.find({ _id: projectId }).populate('team');
+    },
     team: async (parent, { project }) => {
       return await Teammate.find({ project: project });
+    },
+    investments: async (parent, args, context) => {
+      return await Project.find({ investors: context.user._id });
     }
   },
   Mutation: {
@@ -31,8 +37,8 @@ const resolvers = {
     addTeammate: async (parent, args) => {
       return await Teammate.create(args);
     },
-    updateTeammate: async (parent, args, context) => {
-      return await Teammate.findByIdAndUpdate(args, context.user._id, { new: true });
+    updateTeammate: async (parent, args) => {
+      return await Teammate.findByIdAndUpdate(args, { new: true });
     },
     updateUser: async (parent, args, context) => {
       if (context.user) {
@@ -44,8 +50,8 @@ const resolvers = {
     updateProject: async (parent, args) => {
       return await Project.findByIdAndUpdate(args, { new: true });
     },
-    updateTags: async (parent, args, context) => {
-      return await Project.findByIdAndUpdate(context.project._id, { $push: { tags: args}})
+    updateTags: async (parent, args) => {
+      return await Project.findByIdAndUpdate(args, { $push: { tags: args.tags}})
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
