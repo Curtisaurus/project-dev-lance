@@ -1,19 +1,19 @@
 import React from "react";
 import {
   SidebarContainer,
-  Icon,
-  CloseIcon,
-  SidebarWrapper,
-  SidebarMenu,
-  SidebarLink,
-  SideBtnWrap,
-  SidebarRoute,
+  // Icon,
+  // CloseIcon,
+  // SidebarWrapper,
+  // SidebarMenu,
+  // SidebarLink,
+  // SideBtnWrap,
+  // SidebarRoute,
 } from "./SidebarElements";
 
 const Sidebar = ({ isOpen, toggle }) => {
   return (
     <SidebarContainer isOpen={isOpen} onClick={toggle}>
-      <Icon onClick={toggle}>
+      {/* <Icon onClick={toggle}>
         <CloseIcon />
       </Icon>
       <SidebarWrapper>
@@ -31,7 +31,7 @@ const Sidebar = ({ isOpen, toggle }) => {
         <SideBtnWrap>
           <SidebarRoute to="/project-form">Start a Project</SidebarRoute>
         </SideBtnWrap>
-      </SidebarWrapper>
+      </SidebarWrapper> */}
     </SidebarContainer>
   );
 };

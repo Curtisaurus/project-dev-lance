@@ -11,8 +11,8 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <Sidebar isOpen={isOpen} toggle={toggle} />
-      <Navbar toggle={toggle} />
+      {/* <Sidebar isOpen={isOpen} toggle={toggle} /> */}
+      {/* <Navbar toggle={toggle} /> */}
     </React.Fragment>
   );
 };
