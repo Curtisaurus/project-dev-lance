@@ -48,7 +48,7 @@ db.once("open", async () => {
   const projects = await Project.insertMany([
     {
       name: "Best Project EVERRRRRR",
-      owner: users[0]._id,
+      owner: User(users[0]),
       description: "Most complex project to solve your real world needs ever",
       image: "https://gfycat.com/anxiousilliteratebabirusa",
       reqFunds: "50000",
@@ -56,7 +56,7 @@ db.once("open", async () => {
     },
     {
       name: "Wurst Project",
-      owner: users[1]._id,
+      owner: User(users[1]),
       description: "It says hello world barely",
       image: "https://gfycat.com/courteoushandmadebutterfly",
       reqFunds: "50000",
@@ -64,7 +64,7 @@ db.once("open", async () => {
     },
     {
       name: "Ok Project",
-      owner: users[2]._id,
+      owner: User(users[2]),
       description: "Literally Minesweeper",
       image: "https://i.imgur.com/4zdNjKf.png",
       reqFunds: "50000",
