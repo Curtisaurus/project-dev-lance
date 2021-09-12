@@ -9,26 +9,16 @@ import spinner from "../../assets/images/spinner.gif";
 function ProjectList() {
   const { loading, data } = useQuery(QUERY_ALL_PROJECTS);
 
-  let projects
-  
-  if(!loading) {
-    projects = data.allProjects
+  let projects;
+
+  if (!loading) {
+    projects = data.allProjects;
   }
 
   return (
     <div className="my-2">
-<<<<<<< HEAD
-      <h2>Dev Projects:</h2>
-      {projects.length ? (
-=======
-<<<<<<< HEAD:client/src/components/Project/ProjectList.js
       <h2>Our Products:</h2>
       {projects.length ? (
-=======
-      <h2>Dev Projects:</h2>
-      {data.projects.length ? (
->>>>>>> 2262a5d57669d78948f92d5106bf1ed5eeca9be8:client/src/components/ProjectList/ProjectList.js
->>>>>>> main
         <div className="flex-row">
           {projects.map((project) => (
             <ProjectItem
