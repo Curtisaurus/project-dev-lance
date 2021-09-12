@@ -26,7 +26,7 @@ const Navbar = ({ toggle }) => {
               <NavLinks to="login">Login</NavLinks>
             </NavItem>
             <NavItem>
-              <NavLinks to="logout">Login</NavLinks>
+              <NavLinks to="logout">Logout</NavLinks>
             </NavItem>
             <NavItem>
               <NavLinks to="/">Dashboard</NavLinks>
