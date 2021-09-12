@@ -33,12 +33,12 @@ export const QUERY_CHECKOUT = gql`
 `;
 
 export const QUERY_ALL_PROJECTS = gql`
-  {
-    projects {
+  query allProjects {
+    allProjects {
       _id
       name
       owner {
-        name
+        username
       }
       description
       image
