@@ -11,12 +11,12 @@ const typeDefs = gql`
   type Project {
     _id: ID
     name: String!
-    owner: ID!
+    owner: User
     description: String
     image: String
     reqFunds: Float!
     acqFunds: Float!
-    team: [ID]
+    team: [Teammate]
     investors: [ID]
     tags: [String]
   }
