@@ -8,10 +8,16 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
-import Home from "./pages/Home";
+// Import Views
+import Home from "./views/Home";
+import CreateProject from "./views/CreateProject";
+import EditProject from "./views/EditProject";
+import AddTeammates from "./views/AddTeammates";
 // import NoMatch from "./pages/NoMatch";
 // import Login from "./pages/Login";
 // import Signup from "./pages/Signup";
+
+// Import Components
 import Nav from "./components/Nav";
 import Sidebar from "./components/Sidebar";
 
@@ -44,6 +50,9 @@ function App() {
             <Nav />
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/create-project" component={CreateProject} />
+              <Route exact path="/edit-project" component={EditProject} />
+              <Route exact path="/add-teammates" component={AddTeammates} />
               {/* <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} /> */}
               {/* <Route component={NoMatch} /> */}
@@ -56,19 +65,3 @@ function App() {
 }
 
 export default App;
-
-// import React from "react";
-// import "./App.css";
-// import { BrowserRouter as Router } from "react-router-dom";
-
-// import Home from "./pages";
-
-// function App() {
-//   return (
-//     <Router>
-//       <Home />
-//     </Router>
-//   );
-// }
-
-// export default App;
