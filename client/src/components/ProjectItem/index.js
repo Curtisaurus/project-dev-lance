@@ -7,6 +7,7 @@ function ProjectItem(project) {
     image,
     projectName,
     ownerName,
+    // date,
     description,
     reqFunds,
     acqFunds,
@@ -18,11 +19,12 @@ function ProjectItem(project) {
         <div className="card px-1 py-1">
           <img alt={projectName} src={`/images/${image}`} />
           <h3>{projectName}</h3>
-          <p>{ownerName}</p>
+          <p>Created by {ownerName} on date.</p>
           <p>{description}</p>
           <p>
-            ${acqFunds} / ${reqFunds}
+            Funding: ${acqFunds} / ${reqFunds}
           </p>
+          <p>Launch Date:</p>
         </div>
       </Link>
     </>
