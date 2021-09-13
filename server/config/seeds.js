@@ -1,70 +1,77 @@
-const db = require('./connection');
-const { User, Teammate, Project } = require('../models');
+const db = require("./connection");
+const { User, Teammate, Project } = require("../models");
 
-db.once('open', async () => {
-    await User.deleteMany({});
+db.once("open", async () => {
+  await User.deleteMany({});
 
-    const users = await User.insertMany([
-        {
-            email: 'toddmcfarlane@marvel.com',
-            password: 'iamhulk'
-        },
-        {
-            email: 'jeffdmcfarlane@marvel.com',
-            password: 'iamspiderman'
-        },
-        {
-            email: 'mikedmcfarlane@marvel.com',
-            password: 'iamsuperman'
-        },
-        {
-            email: 'jimmymcfarlane@marvel.com',
-            password: 'iambatman'
-        }
-    ]);
+  const users = await User.insertMany([
+    {
+      username: "Hulk",
+      email: "toddmcfarlane@marvel.com",
+      password: "iamhulk",
+    },
+    {
+      username: "Spiderman",
+      email: "jeffdmcfarlane@marvel.com",
+      password: "iamspiderman",
+    },
+    {
+      username: "Superman",
+      email: "mikedmcfarlane@marvel.com",
+      password: "iamsuperman",
+    },
+    {
+      username: "Batman",
+      email: "jimmymcfarlane@marvel.com",
+      password: "iambatman",
+    },
+  ]);
 
-    console.log('users seeded');
- 
-    await Teammate.deleteMany();
+  console.log("users seeded");
 
-    const teammates = await Teammate.insertMany([
-        {role: 'Administrator'},
-        {role: 'Professor'},
-        {role: 'BackEnd Dev'},
-        {role: 'FrontEnd Dev'},
-        {role: 'FullStackDev'},
-        {role: 'SQLGuy'},
-        {role: 'MONGOGirl'}
-     ]);
+  await Teammate.deleteMany();
 
-    console.log('teammates seeded');
+  const teammates = await Teammate.insertMany([
+    { role: "Administrator" },
+    { role: "Professor" },
+    { role: "BackEnd Dev" },
+    { role: "FrontEnd Dev" },
+    { role: "FullStackDev" },
+    { role: "SQLGuy" },
+    { role: "MONGOGirl" },
+  ]);
 
-    await Project.deleteMany();
+  console.log("teammates seeded");
 
-    const projects = await Project.insertMany([
-        {name: 'Best Project EVERRRRRR',
-        owner: users[0]._id,
-        description: 'Most complex project to solve your real world needs ever',
-        image: "https://gfycat.com/anxiousilliteratebabirusa",
-        reqFunds: "50000",
-        acqFunds: "45000"
-        },
-        {name: 'Wurst Project',
-        owner: users[1]._id,
-        description: 'It says hello world barely',
-        image: "https://gfycat.com/courteoushandmadebutterfly",
-        reqFunds: "50000",
-        acqFunds: "45000"
-        },
-        {name: 'Ok Project',
-        owner: users[2]._id,
-        description: 'Literally Minesweeper',
-        image: "https://i.imgur.com/4zdNjKf.png",
-        reqFunds: "50000",
-        acqFunds: "45000"
-        }
-    ]);
+  await Project.deleteMany();
 
-    console.log("projects seeded");
-    process.exit();
-})
+  const projects = await Project.insertMany([
+    {
+      name: "Best Project EVERRRRRR",
+      owner: User(users[0]),
+      description: "Most complex project to solve your real world needs ever",
+      image: "https://gfycat.com/anxiousilliteratebabirusa",
+      reqFunds: "50000",
+      acqFunds: "45000",
+    },
+    {
+      name: "Wurst Project",
+      owner: User(users[1]),
+      description: "It says hello world barely",
+      image: "https://gfycat.com/courteoushandmadebutterfly",
+      reqFunds: "50000",
+      acqFunds: "45000",
+    },
+    {
+      name: "Ok Project",
+      owner: User(users[2]),
+      description: "Literally Minesweeper",
+      image: "https://i.imgur.com/4zdNjKf.png",
+      reqFunds: "50000",
+      acqFunds: "45000",
+    },
+  ]);
+
+  console.log("projects seeded");
+  process.exit();
+});

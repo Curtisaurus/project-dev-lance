@@ -11,7 +11,7 @@ const resolvers = {
     userProjects: async (parent, args, context) => {
       return await Project.find({ owner: context.user._id });
     },
-    projectByTag: async (parent, args) => {
+    projectSearch: async (parent, args) => {
       return await Project.find({ $or: [{ name: { $in: args }}, { tags: { $in: args }}] });
     },
     user: async (parent, args, context) => {

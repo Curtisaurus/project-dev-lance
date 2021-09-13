@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   SidebarContainer,
   // Icon,
@@ -10,7 +10,12 @@ import {
   // SidebarRoute,
 } from "./SidebarElements";
 
-const Sidebar = ({ isOpen, toggle }) => {
+const Sidebar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <SidebarContainer isOpen={isOpen} onClick={toggle}>
       {/* <Icon onClick={toggle}>
