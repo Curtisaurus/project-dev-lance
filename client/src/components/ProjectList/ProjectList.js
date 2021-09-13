@@ -1,10 +1,10 @@
 import React from "react";
 import ProjectItem from "../ProjectItem";
 // import { UPDATE_PROJECTS } from "../../utils/actions";
-// import { useQuery } from "@apollo/react-hooks";
-// import { QUERY_ALL_PROJECTS } from "../../utils/queries";
+import { useQuery } from "@apollo/react-hooks";
+import { QUERY_ALL_PROJECTS } from "../../utils/queries";
 // import { idbPromise } from '../../utils/helpers';
-import spinner from "../../assets/images/spinner.gif";
+// import spinner from "../../assets/images/spinner.gif";
 
 function ProjectList() {
   const projects = [
@@ -33,7 +33,7 @@ function ProjectList() {
       acqFunds: "45000",
     },
   ];
-  // const { loading, data } = useQuery(QUERY_ALL_PROJECTS);
+  const { loading, data } = useQuery(QUERY_ALL_PROJECTS);
 
   // let projects;
 
@@ -44,7 +44,7 @@ function ProjectList() {
   return (
     <div className="my-2">
       <h2>Dev Projects:</h2>
-      {data.projects.length ? (
+      {projects.length ? (
         <div className="flex-row">
           {projects.map((project) => (
             <ProjectItem
