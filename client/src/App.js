@@ -7,12 +7,10 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // Import Views
 import Home from "./views/Home";
-import CreateProject from "./views/CreateProject";
-import EditProject from "./views/EditProject";
-import AddTeammates from "./views/AddTeammates";
 // import NoMatch from "./pages/NoMatch";
 // import Login from "./pages/Login";
 // import Signup from "./pages/Signup";
@@ -50,9 +48,6 @@ function App() {
             <Nav />
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/create-project" component={CreateProject} />
-              <Route exact path="/edit-project" component={EditProject} />
-              <Route exact path="/add-teammates" component={AddTeammates} />
               {/* <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} /> */}
               {/* <Route component={NoMatch} /> */}

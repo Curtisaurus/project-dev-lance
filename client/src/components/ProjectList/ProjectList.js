@@ -3,6 +3,8 @@ import ProjectItem from "../ProjectItem";
 // import { UPDATE_PROJECTS } from "../../utils/actions";
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_PROJECTS } from "../../utils/queries";
+import { Container, Row, Col } from "react-bootstrap";
+
 // import { idbPromise } from '../../utils/helpers';
 import spinner from "../../assets/images/spinner.gif";
 
@@ -69,27 +71,33 @@ function ProjectList() {
 
   return (
     <div className="my-2">
-      <h2>Our Products:</h2>
-      {projects.length ? (
-        <div className="flex-row">
-          {projects.map((project) => (
-            <ProjectItem
-              key={project._id}
-              _id={project._id}
-              image={project.image}
-              projectName={project.name}
-              ownerName={project.owner.username}
-              description={project.description}
-              reqFunds={project.reqFunds}
-              acqFunds={project.acqFunds}
-              date={dateFormat(project.createdAt)}
-            />
-          ))}
-        </div>
-      ) : (
-        <h3>No projects yet!</h3>
-      )}
-      {loading ? <img src={spinner} alt="loading" /> : null}
+      <Container fluid>
+        <Row>
+          {projects.length ? (
+            <>
+              {projects.map((project) => (
+                <Col>
+                  <ProjectItem
+                    key={project._id}
+                    _id={project._id}
+                    image={project.image}
+                    projectName={project.name}
+                    ownerName={project.owner.username}
+                    description={project.description}
+                    reqFunds={project.reqFunds}
+                    acqFunds={project.acqFunds}
+                    date={dateFormat(project.createdAt)}
+                  />
+                </Col>
+              ))}
+            </>
+          ) : (
+            <h3>No projects yet!</h3>
+          )}
+        </Row>
+      </Container>
+
+      {/* {loading ? <img src={spinner} alt="loading" /> : null} */}
     </div>
   );
 }

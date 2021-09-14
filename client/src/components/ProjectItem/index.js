@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "../ProjectItem/ProjectItem.css";
+import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
 function ProjectItem(project) {
   const {
@@ -15,18 +17,25 @@ function ProjectItem(project) {
 
   return (
     <>
-      <Link to={`/projects/${_id}`}>
-        <div className="card px-1 py-1">
-          <img alt={projectName} src={`/images/${image}`} />
-          <h3>{projectName}</h3>
-          <p>Created by {ownerName} on date.</p>
-          <p>{description}</p>
-          <p>
-            Funding: ${acqFunds} / ${reqFunds}
-          </p>
-          <p>Launch Date: {date}</p>
-        </div>
-      </Link>
+      <Card style={{ width: "18rem" }}>
+        <Link
+          className="link-style"
+          to={`/projects/${_id}`}
+          text-decoration="none"
+        >
+          <Card.Body>
+            <Card.Title>{projectName}</Card.Title>
+            <Card.Text>Created by {ownerName} on {date}.</Card.Text>
+            <Card.Text>{description}</Card.Text>
+          </Card.Body>
+          <ListGroup className="list-group-flush">
+            <ListGroupItem>
+              Funding: ${acqFunds} / ${reqFunds}
+            </ListGroupItem>
+            <ListGroupItem>Launch Date: {date}</ListGroupItem>
+          </ListGroup>
+        </Link>
+      </Card>
     </>
   );
 }
