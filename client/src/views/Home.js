@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectList from "../components/ProjectList/ProjectList";
+import ProjectList from "../components/ProjectList/index";
 
 const Home = () => {
   return (

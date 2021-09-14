@@ -42,7 +42,6 @@ function ProjectList() {
   //   },
   // ];
 
-  
   const { loading, data, error } = useQuery(QUERY_ALL_PROJECTS);
 
   if (error) {
@@ -51,15 +50,14 @@ function ProjectList() {
 
   let projects = [];
 
-  if(!loading && data.allProjects) {
-    projects = data.allProjects
+  if (!loading && data.allProjects) {
+    projects = data.allProjects;
   }
 
   function dateFormat(date) {
-
     let dateObj = new Date(parseInt(date));
 
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { year: "numeric", month: "long", day: "numeric" };
 
     let formatted = dateObj.toLocaleDateString("en-US", options);
 
@@ -67,9 +65,9 @@ function ProjectList() {
   }
 
   return (
-    <div className="my-2">
+    <div>
       <Container fluid>
-        <Row>
+        <Row xs={1} md={2} lg={4} className="mx-4 my-4">
           {projects.length ? (
             <>
               {projects.map((project) => (
