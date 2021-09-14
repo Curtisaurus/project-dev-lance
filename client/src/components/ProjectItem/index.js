@@ -5,11 +5,11 @@ import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
 function ProjectItem(project) {
   const {
-    key,
+    _id,
     image,
     projectName,
     ownerName,
-    // date,
+    date,
     description,
     reqFunds,
     acqFunds,
@@ -20,19 +20,19 @@ function ProjectItem(project) {
       <Card style={{ width: "18rem" }}>
         <Link
           className="link-style"
-          to={`/projects/${key}`}
+          to={`/projects/${_id}`}
           text-decoration="none"
         >
           <Card.Body>
             <Card.Title>{projectName}</Card.Title>
-            <Card.Text>Created by {ownerName} on date.</Card.Text>
+            <Card.Text>Created by {ownerName} on {date}.</Card.Text>
             <Card.Text>{description}</Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
             <ListGroupItem>
               Funding: ${acqFunds} / ${reqFunds}
             </ListGroupItem>
-            <ListGroupItem>Launch Date:</ListGroupItem>
+            <ListGroupItem>Launch Date: {date}</ListGroupItem>
           </ListGroup>
         </Link>
       </Card>

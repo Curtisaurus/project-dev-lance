@@ -19,6 +19,7 @@ const typeDefs = gql`
     team: [Teammate]
     investors: [ID]
     tags: [String]
+    createdAt: String
   }
 
   type User {
