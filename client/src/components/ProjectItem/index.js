@@ -12,12 +12,12 @@ function ProjectItem(project) {
     description,
     reqFunds,
     acqFunds,
-    launch
+    launch,
   } = project;
 
   return (
     <>
-      <Card style={{ width: "18rem" }}>
+      <Card className="my-3">
         <Link
           className="link-style"
           to={`/projects/${_id}`}
@@ -25,7 +25,9 @@ function ProjectItem(project) {
         >
           <Card.Body>
             <Card.Title>{projectName}</Card.Title>
-            <Card.Text>Created by {ownerName} on {date}.</Card.Text>
+            <Card.Text>
+              Created by {ownerName} on {date}.
+            </Card.Text>
             <Card.Text>{description}</Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
