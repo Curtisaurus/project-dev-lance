@@ -51,18 +51,15 @@ function ProjectList() {
 
   let projects = [];
 
-  if(!loading) {
+  if(!loading && data.allProjects) {
     projects = data.allProjects
   }
 
   function dateFormat(date) {
 
-    console.log(typeof(date));
-
-    let dateObj = new Date(Date(date));
+    let dateObj = new Date(parseInt(date));
 
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-
 
     let formatted = dateObj.toLocaleDateString("en-US", options);
 
@@ -76,7 +73,7 @@ function ProjectList() {
           {projects.length ? (
             <>
               {projects.map((project) => (
-                <Col>
+                <Col key={project._id}>
                   <ProjectItem
                     key={project._id}
                     _id={project._id}
@@ -87,6 +84,7 @@ function ProjectList() {
                     reqFunds={project.reqFunds}
                     acqFunds={project.acqFunds}
                     date={dateFormat(project.createdAt)}
+                    launch={dateFormat(project.launch)}
                   />
                 </Col>
               ))}
@@ -97,7 +95,7 @@ function ProjectList() {
         </Row>
       </Container>
 
-      {/* {loading ? <img src={spinner} alt="loading" /> : null} */}
+      {loading ? <img src={spinner} alt="loading" /> : null}
     </div>
   );
 }

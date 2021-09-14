@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "../ProjectItem/ProjectItem.css";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
 function ProjectItem(project) {
@@ -13,6 +12,7 @@ function ProjectItem(project) {
     description,
     reqFunds,
     acqFunds,
+    launch
   } = project;
 
   return (
@@ -21,7 +21,7 @@ function ProjectItem(project) {
         <Link
           className="link-style"
           to={`/projects/${_id}`}
-          text-decoration="none"
+          textDecoration="none"
         >
           <Card.Body>
             <Card.Title>{projectName}</Card.Title>
@@ -32,7 +32,7 @@ function ProjectItem(project) {
             <ListGroupItem>
               Funding: ${acqFunds} / ${reqFunds}
             </ListGroupItem>
-            <ListGroupItem>Launch Date: {date}</ListGroupItem>
+            <ListGroupItem>Launch Date: {launch}</ListGroupItem>
           </ListGroup>
         </Link>
       </Card>
