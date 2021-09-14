@@ -36,7 +36,10 @@ const projectSchema = new Schema({
       ref: 'User'
     }
   ],
-  tags: [String]
+  tags: [String],
+  launch: {
+    type: String
+  }
 },
 {
   timestamps: true

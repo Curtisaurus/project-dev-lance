@@ -53,6 +53,7 @@ db.once("open", async () => {
       image: "https://gfycat.com/anxiousilliteratebabirusa",
       reqFunds: "50000",
       acqFunds: "45000",
+      launch: "1671929645000"
     },
     {
       name: "Wurst Project",
@@ -61,6 +62,7 @@ db.once("open", async () => {
       image: "https://gfycat.com/courteoushandmadebutterfly",
       reqFunds: "50000",
       acqFunds: "45000",
+      launch: "1739494445000"
     },
     {
       name: "Ok Project",
@@ -69,6 +71,7 @@ db.once("open", async () => {
       image: "https://i.imgur.com/4zdNjKf.png",
       reqFunds: "50000",
       acqFunds: "45000",
+      launch: "1640998445000"
     },
   ]);
 
