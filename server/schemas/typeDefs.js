@@ -8,6 +8,13 @@ const typeDefs = gql`
     project: ID
   }
 
+  type Investment{
+    _id: ID
+    project: ID!
+    investor: User
+    amount: Float
+  }
+
   type Project {
     _id: ID
     name: String!
