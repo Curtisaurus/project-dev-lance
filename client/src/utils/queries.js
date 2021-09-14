@@ -50,6 +50,7 @@ export const QUERY_ALL_PROJECTS = gql`
       }
       investors
       tags
+      createdAt
     }
   }
 `;
