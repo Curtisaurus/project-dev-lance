@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 function ProjectItem(project) {
   const {
-    key,
+    _id,
     image,
     projectName,
     ownerName,
-    // date,
+    date,
     description,
     reqFunds,
     acqFunds,
@@ -15,7 +15,7 @@ function ProjectItem(project) {
 
   return (
     <>
-      <Link to={`/projects/${key}`}>
+      <Link to={`/projects/${_id}`}>
         <div className="card px-1 py-1">
           <img alt={projectName} src={`/images/${image}`} />
           <h3>{projectName}</h3>
@@ -24,7 +24,7 @@ function ProjectItem(project) {
           <p>
             Funding: ${acqFunds} / ${reqFunds}
           </p>
-          <p>Launch Date:</p>
+          <p>Launch Date: {date}</p>
         </div>
       </Link>
     </>
