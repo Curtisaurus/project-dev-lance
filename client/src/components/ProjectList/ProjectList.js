@@ -51,7 +51,7 @@ function ProjectList() {
 
   let projects = [];
 
-  if(!loading) {
+  if(!loading && data.allProjects) {
     projects = data.allProjects
   }
 
