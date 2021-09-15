@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectItem from "../ProjectItem";
+import ProjectCard from "../ProjectCard";
 // import { UPDATE_PROJECTS } from "../../utils/actions";
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_PROJECTS } from "../../utils/queries";
@@ -8,39 +8,39 @@ import { Container, Row, Col } from "react-bootstrap";
 // import { idbPromise } from '../../utils/helpers';
 import spinner from "../../assets/images/spinner.gif";
 
-function ViewAllProjectCards() {
-  // const projects = [
-  //   {
-  //     name: "Best Project EVERRRRRR",
-  //     owner: {
-  //       username: "Hulk"
-  //     },
-  //     description: "Most complex project to solve your real world needs ever",
-  //     image: "https://gfycat.com/anxiousilliteratebabirusa",
-  //     reqFunds: "50000",
-  //     acqFunds: "45000",
-  //   },
-  //   {
-  //     name: "Wurst Project",
-  //     owner: {
-  //       username: "Spiderman"
-  //     },
-  //     description: "It says hello world barely",
-  //     image: "https://gfycat.com/courteoushandmadebutterfly",
-  //     reqFunds: "50000",
-  //     acqFunds: "45000",
-  //   },
-  //   {
-  //     name: "Ok Project",
-  //     owner: {
-  //       username: "Other Guy"
-  //     },
-  //     description: "Literally Minesweeper",
-  //     image: "https://i.imgur.com/4zdNjKf.png",
-  //     reqFunds: "50000",
-  //     acqFunds: "45000",
-  //   },
-  // ];
+function ViewAllProjectCards(props) {
+  const projects = [
+    {
+      name: "Best Project EVERRRRRR",
+      owner: {
+        username: "Hulk",
+      },
+      description: "Most complex project to solve your real world needs ever",
+      image: "https://gfycat.com/anxiousilliteratebabirusa",
+      reqFunds: "50000",
+      acqFunds: "45000",
+    },
+    {
+      name: "Wurst Project",
+      owner: {
+        username: "Spiderman",
+      },
+      description: "It says hello world barely",
+      image: "https://gfycat.com/courteoushandmadebutterfly",
+      reqFunds: "50000",
+      acqFunds: "45000",
+    },
+    {
+      name: "Ok Project",
+      owner: {
+        username: "Other Guy",
+      },
+      description: "Literally Minesweeper",
+      image: "https://i.imgur.com/4zdNjKf.png",
+      reqFunds: "50000",
+      acqFunds: "45000",
+    },
+  ];
 
   const { loading, data, error } = useQuery(QUERY_ALL_PROJECTS);
 
@@ -48,11 +48,11 @@ function ViewAllProjectCards() {
     console.log("Error: " + error);
   }
 
-  let projects = [];
+  // let projects = [];
 
-  if (!loading && data.allProjects) {
-    projects = data.allProjects;
-  }
+  // if (!loading && data.allProjects) {
+  //   projects = data.allProjects;
+  // }
 
   function dateFormat(date) {
     let dateObj = new Date(parseInt(date));
@@ -64,6 +64,10 @@ function ViewAllProjectCards() {
     return formatted;
   }
 
+  console.log(props.setModalShow);
+  console.log(typeof props.setModalShow);
+  console.log(props);
+
   return (
     <div>
       <Container>
@@ -72,7 +76,7 @@ function ViewAllProjectCards() {
             <>
               {projects.map((project) => (
                 <Col key={project._id}>
-                  <ProjectItem
+                  <ProjectCard
                     key={project._id}
                     _id={project._id}
                     image={project.image}
@@ -83,6 +87,7 @@ function ViewAllProjectCards() {
                     acqFunds={project.acqFunds}
                     date={dateFormat(project.createdAt)}
                     launch={dateFormat(project.launch)}
+                    setModalShow={props.setModalShow}
                   />
                 </Col>
               ))}

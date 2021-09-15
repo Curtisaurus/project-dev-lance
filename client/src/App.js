@@ -10,14 +10,15 @@ import { setContext } from "@apollo/client/link/context";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Import Components
-import Nav from "./components/Nav";
-import Sidebar from "./components/Sidebar";
+// import Nav from "./components/Nav";
+// import Sidebar from "./components/Sidebar";
 import ViewAllProjectCards from "./components/ViewAllProjectCards/index";
 import AddProject from "./components/AddProjectForm/index";
-import AddTeammates from "./components/AddTeammatesForm/index";
-import UpdateTeammates from "./components/UpdateTeammatesForm/index";
+import AddTeammates from "./components/TeammatesForm/index";
 import UpdateProject from "./components/UpdateProjectForm/index";
-import ViewSingleProject from "./components/ViewSingleProject/index";
+import JoinTeam from "./components/JoinTeamForm/index";
+import ViewSingleProject from "./components/ViewSingleProject";
+import NavigationBar from "./components/Nav";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -39,21 +40,27 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [modalShow, setModalShow] = React.useState(false);
   return (
     <ApolloProvider client={client}>
       <Router>
         <div>
-          <Sidebar />
-          <Nav />
+          {/* <Sidebar /> */}
+          <NavigationBar />
           <Switch>
-            <Route exact path="/projects" component={ViewAllProjectCards} />
-            {/* <Route exact path="/projects" component={ViewSingleProject} /> */}
+            <Route exact path="/projects">
+              <ViewAllProjectCards setModalShow={setModalShow} />
+            </Route>
             <Route exact path="/create-project" component={AddProject} />
             <Route exact path="/update-project" component={UpdateProject} />
+            <Route exact path="/join-team" component={JoinTeam} />
             <Route exact path="/add-teammates" component={AddTeammates} />
-            <Route exact path="/update-teammates" component={UpdateTeammates} />
             <Route component={ViewAllProjectCards} />
           </Switch>
+          <ViewSingleProject
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+          />{" "}
         </div>
       </Router>
     </ApolloProvider>
