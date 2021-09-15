@@ -10,7 +10,10 @@ const projectSchema = new Schema({
     required: true,
     trim: true
   },
-  owner: User.schema,
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
   description: {
     type: String
   },
@@ -26,7 +29,6 @@ const projectSchema = new Schema({
   // acquired funds
   acqFunds: {
     type: Number,
-    required: true,
     min: 0.00
   },
   team: [Teammate.schema],

@@ -30,6 +30,7 @@ export const ADD_PROJECT = gql`
     $image: String
     $reqFunds: Float!
     $tags: [String]
+    $launch: String
   ) {
     addProject(
       name: $name
@@ -38,11 +39,12 @@ export const ADD_PROJECT = gql`
       image: $image
       reqFunds: $reqFunds
       tags: $tags
+      launch: $launch
     ) {
       _id
       name
       owner {
-        name
+        username
       }
       description
       image
