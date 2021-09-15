@@ -1,5 +1,5 @@
 const db = require("./connection");
-const { User, Teammate, Project } = require("../models");
+const { User, Teammate, Project, Investments } = require("../models");
 
 db.once("open", async () => {
   await User.deleteMany({});
@@ -76,5 +76,29 @@ db.once("open", async () => {
   ]);
 
   console.log("projects seeded");
+
+  const investments = await Investments.insertMany([
+    {
+      role: "1kInvestor",
+      user: User(users[0]),
+      amount: 1000,
+      project: Project(projects[0]),
+    },
+    {
+      role: "10kInvestor",
+      user: User(users[1]),
+      amount: 10000,
+      project: Project(projects[1]),
+      
+    },
+    {
+      role: "15kInvestor",
+      user: User(users[0]),
+      amount: 15000,
+      project: Project(projects[2]),
+    },
+    
+  
+  ])
   process.exit();
 });

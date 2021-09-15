@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Project, Teammate, Investment } = require('../models');
+const { User, Project, Teammate, Investments } = require('../models');
 const { signToken } = require('../utils/auth');
 // const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
@@ -28,6 +28,10 @@ const resolvers = {
     }
   },
   Mutation: {
+    addinvestment:async (parent, args) => {
+      const investments = await Investments.create(args);
+      return investments;
+    },
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);

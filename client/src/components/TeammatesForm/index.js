@@ -1,5 +1,5 @@
 import React from "react";
-import { EDIT_TEAMMATE } from "../../utils/actions";
+import { ADD_TEAMMATE } from "../../utils/actions";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import {
   Container,
@@ -10,7 +10,7 @@ import {
   ListGroup,
 } from "react-bootstrap";
 
-function UpdateTeammates(teammate) {
+function AddTeammates(teammate) {
   const { _id, role, user, project } = teammate;
 
   return (
@@ -73,4 +73,4 @@ function UpdateTeammates(teammate) {
   );
 }
 
-export default UpdateTeammates;
+export default AddTeammates;

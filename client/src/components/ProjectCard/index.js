@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
-function ProjectItem(project) {
+function ProjectCard(project) {
   const {
     _id,
     image,
@@ -13,12 +13,13 @@ function ProjectItem(project) {
     reqFunds,
     acqFunds,
     launch,
+    setModalShow,
   } = project;
 
   return (
     <>
       <Card className="my-3">
-        <NavLink to={`/projects/${_id}`}>
+        <a onClick={() => setModalShow(true)}>
           <Card.Body>
             <Card.Title>{projectName}</Card.Title>
             <Card.Text>
@@ -32,10 +33,10 @@ function ProjectItem(project) {
             </ListGroupItem>
             <ListGroupItem>Launch Date: {launch}</ListGroupItem>
           </ListGroup>
-        </NavLink>
+        </a>
       </Card>
     </>
   );
 }
 
-export default ProjectItem;
+export default ProjectCard;
