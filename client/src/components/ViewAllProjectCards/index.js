@@ -8,7 +8,7 @@ import { Container, Row, Col } from "react-bootstrap";
 // import { idbPromise } from '../../utils/helpers';
 import spinner from "../../assets/images/spinner.gif";
 
-function ProjectList() {
+function ViewAllProjectCards() {
   // const projects = [
   //   {
   //     name: "Best Project EVERRRRRR",
@@ -66,7 +66,7 @@ function ProjectList() {
 
   return (
     <div>
-      <Container fluid>
+      <Container>
         <Row xs={1} md={2} lg={4} className="mx-4 my-4">
           {projects.length ? (
             <>
@@ -98,4 +98,4 @@ function ProjectList() {
   );
 }
 
-export default ProjectList;
+export default ViewAllProjectCards;

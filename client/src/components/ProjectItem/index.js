@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
 function ProjectItem(project) {
@@ -18,11 +18,7 @@ function ProjectItem(project) {
   return (
     <>
       <Card className="my-3">
-        <Link
-          className="link-style"
-          to={`/projects/${_id}`}
-          textDecoration="none"
-        >
+        <NavLink to={`/projects/${_id}`}>
           <Card.Body>
             <Card.Title>{projectName}</Card.Title>
             <Card.Text>
@@ -36,7 +32,7 @@ function ProjectItem(project) {
             </ListGroupItem>
             <ListGroupItem>Launch Date: {launch}</ListGroupItem>
           </ListGroup>
-        </Link>
+        </NavLink>
       </Card>
     </>
   );
