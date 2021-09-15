@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('./User'); 
 
 const { Schema } = mongoose;
 
@@ -8,19 +9,18 @@ const investmentSchema = new Schema({
         required: true,
         trim: true
     },
-    User: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+   user: {
+        type: User.schema,
       },
-      project: {
+    project: {
         type: Schema.Types.ObjectId,
         ref: 'Project'
       },
-      amount: {
+    amount: {
           type: Number,
 
-      }
+    }
 });
 
-const Investment = mongoose.model('Investment', investmentSchema);
-module.exports = Investment;
+const Investments = mongoose.model('Investments', investmentSchema);
+module.exports = Investments;

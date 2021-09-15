@@ -8,7 +8,7 @@ const typeDefs = gql`
     project: ID
   }
 
-  type Investment{
+  type Investments{
     _id: ID
     project: ID!
     investor: User
