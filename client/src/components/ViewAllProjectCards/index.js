@@ -8,7 +8,7 @@ import { Container, Row, Col } from "react-bootstrap";
 // import { idbPromise } from '../../utils/helpers';
 import spinner from "../../assets/images/spinner.gif";
 
-function ProjectList() {
+function ViewAllProjectCards() {
   // const projects = [
   //   {
   //     name: "Best Project EVERRRRRR",
@@ -42,7 +42,6 @@ function ProjectList() {
   //   },
   // ];
 
-  
   const { loading, data, error } = useQuery(QUERY_ALL_PROJECTS);
 
   if (error) {
@@ -51,18 +50,14 @@ function ProjectList() {
 
   let projects = [];
 
-  if(!loading) {
-    projects = data.allProjects
+  if (!loading && data.allProjects) {
+    projects = data.allProjects;
   }
 
   function dateFormat(date) {
+    let dateObj = new Date(parseInt(date));
 
-    console.log(typeof(date));
-
-    let dateObj = new Date(Date(date));
-
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-
+    const options = { year: "numeric", month: "long", day: "numeric" };
 
     let formatted = dateObj.toLocaleDateString("en-US", options);
 
@@ -70,13 +65,13 @@ function ProjectList() {
   }
 
   return (
-    <div className="my-2">
-      <Container fluid>
-        <Row>
+    <div>
+      <Container>
+        <Row xs={1} md={2} lg={4} className="mx-4 my-4">
           {projects.length ? (
             <>
               {projects.map((project) => (
-                <Col>
+                <Col key={project._id}>
                   <ProjectItem
                     key={project._id}
                     _id={project._id}
@@ -87,6 +82,7 @@ function ProjectList() {
                     reqFunds={project.reqFunds}
                     acqFunds={project.acqFunds}
                     date={dateFormat(project.createdAt)}
+                    launch={dateFormat(project.launch)}
                   />
                 </Col>
               ))}
@@ -97,9 +93,9 @@ function ProjectList() {
         </Row>
       </Container>
 
-      {/* {loading ? <img src={spinner} alt="loading" /> : null} */}
+      {loading ? <img src={spinner} alt="loading" /> : null}
     </div>
   );
 }
 
-export default ProjectList;
+export default ViewAllProjectCards;

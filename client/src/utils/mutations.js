@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
@@ -12,16 +12,8 @@ export const LOGIN = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation addUser(
-    $username: String!
-    $email: String!
-    $password: String!
-  ) {
-    addUser(
-      username: $username
-      email: $email
-      password: $password
-    ) {
+  mutation addUser($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password) {
       token
       user {
         _id
@@ -67,16 +59,8 @@ export const ADD_PROJECT = gql`
 `;
 
 export const ADD_TEAMMATE = gql`
-  mutation addTeammate(
-    $project: ID!
-    $role: String!
-    $user: ID
-  ) {
-    addTeammate(
-      project: $project
-      role: $role
-      user: $user
-    ) {
+  mutation addTeammate($project: ID!, $role: String!, $user: ID) {
+    addTeammate(project: $project, role: $role, user: $user) {
       project {
         name
       }
@@ -89,16 +73,8 @@ export const ADD_TEAMMATE = gql`
 `;
 
 export const UPDATE_TEAMMATE = gql`
-  mutation updateTeammate(
-    $id: ID!
-    $role: String!
-    $user: ID
-  ) {
-    updateTeammate(
-      _id: $id
-      role: $role
-      user: $user
-    ) {
+  mutation updateTeammate($id: ID!, $role: String!, $user: ID) {
+    updateTeammate(_id: $id, role: $role, user: $user) {
       project {
         name
       }
@@ -125,11 +101,10 @@ export const UPDATE_USER = gql`
       githubUrl: $github
       linkedinUrl: $linkedin
     ) {
-        username
-        email
-        githubUrl
-        linkedinUrl
-      }
+      username
+      email
+      githubUrl
+      linkedinUrl
     }
   }
 `;
@@ -167,14 +142,8 @@ export const UPDATE_PROJECT = gql`
 `;
 
 export const UPDATE_TAGS = gql`
-  mutation updateTags(
-    $project: ID!
-    $tags: [String]
-  ) {
-    updateTags(
-      project: $project
-      tags: $tags
-    ) {
+  mutation updateTags($project: ID!, $tags: [String]) {
+    updateTags(project: $project, tags: $tags) {
       _id
       name
       owner {
@@ -195,7 +164,7 @@ export const UPDATE_TAGS = gql`
 `;
 
 export const ADD_FUNDING = gql`
-  mutation addFunding($project: ID! $funding: Float!) {
+  mutation addFunding($project: ID!, $funding: Float!) {
     addFunding(project: $project, funding: $funding) {
       _id
       name
