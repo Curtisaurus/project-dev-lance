@@ -1,7 +1,6 @@
 import React from "react";
-import { ADD_TEAMMATE } from "../../utils/actions";
+import { EDIT_TEAMMATE } from "../../utils/actions";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-
 import {
   Container,
   Form,
@@ -11,14 +10,14 @@ import {
   ListGroup,
 } from "react-bootstrap";
 
-function AddTeammates(teammate) {
+function UpdateTeammates(teammate) {
   const { _id, role, user, project } = teammate;
 
   return (
     //Render AddTeamate Component
     <Container className="bg-light p-3 my-5">
       <Form className="p-3">
-        <h2>Add Dev Team</h2>
+        <h2>Update Dev Team</h2>
         <h4>Add Roles</h4>
         <InputGroup className="mb-3">
           <Button variant="success px-5" id="button-addon2">
@@ -33,28 +32,34 @@ function AddTeammates(teammate) {
         <h4>Positions</h4>
         <ListGroup variant="flush">
           <ListGroup.Item>
-            <Button variant="outline-success" className="m-2">
-              Join Team
+            <Button variant="outline-danger" className="m-2">
+              Delete Role
             </Button>
             Front-End Developer
           </ListGroup.Item>
           <ListGroup.Item>
+            <Button variant="outline-danger" className="m-2">
+              Delete Role
+            </Button>
             Back-End Developer: Bryan Bentz <FaGithub className="mx-1" />
             <FaLinkedin className="mx-1" />
           </ListGroup.Item>
           <ListGroup.Item>
+            <Button variant="outline-danger" className="m-2">
+              Delete Role
+            </Button>
             Junior Developer: Jay Jenks <FaGithub className="mx-1" />
             <FaLinkedin className="mx-1" />
           </ListGroup.Item>
           <ListGroup.Item>
-            <Button variant="outline-success" className="m-2">
-              Join Team
+            <Button variant="outline-danger" className="m-2">
+              Delete Role
             </Button>
             UX Designer
           </ListGroup.Item>
           <ListGroup.Item>
-            <Button variant="outline-success" className="m-2">
-              Join Team
+            <Button variant="outline-danger" className="m-2">
+              Delete Role
             </Button>
             Project Manager
           </ListGroup.Item>
@@ -68,4 +73,4 @@ function AddTeammates(teammate) {
   );
 }
 
-export default AddTeammates;
+export default UpdateTeammates;

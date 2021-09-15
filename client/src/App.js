@@ -9,15 +9,15 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// Import Views
-import Home from "./views/Home";
-// import NoMatch from "./pages/NoMatch";
-// import Login from "./pages/Login";
-// import Signup from "./pages/Signup";
-
 // Import Components
 import Nav from "./components/Nav";
 import Sidebar from "./components/Sidebar";
+import ViewAllProjectCards from "./components/ViewAllProjectCards/index";
+import AddProject from "./components/AddProjectForm/index";
+import AddTeammates from "./components/AddTeammatesForm/index";
+import UpdateTeammates from "./components/UpdateTeammatesForm/index";
+import UpdateProject from "./components/UpdateProjectForm/index";
+import ViewSingleProject from "./components/ViewSingleProject/index";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -43,16 +43,17 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
-          <>
-            <Sidebar />
-            <Nav />
-            <Switch>
-              <Route exact path="/" component={Home} />
-              {/* <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={Signup} /> */}
-              {/* <Route component={NoMatch} /> */}
-            </Switch>
-          </>
+          <Sidebar />
+          <Nav />
+          <Switch>
+            <Route exact path="/projects" component={ViewAllProjectCards} />
+            {/* <Route exact path="/projects" component={ViewSingleProject} /> */}
+            <Route exact path="/create-project" component={AddProject} />
+            <Route exact path="/update-project" component={UpdateProject} />
+            <Route exact path="/add-teammates" component={AddTeammates} />
+            <Route exact path="/update-teammates" component={UpdateTeammates} />
+            <Route component={ViewAllProjectCards} />
+          </Switch>
         </div>
       </Router>
     </ApolloProvider>
