@@ -30,19 +30,7 @@ function ViewSingleProject(props) {
   );
 }
 
-function App() {
-  const [modalShow, setModalShow] = React.useState(false);
-
-  return (
-    <>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
-        Launch vertically centered modal
-      </Button>
-
-      <ViewSingleProject show={modalShow} onHide={() => setModalShow(false)} />
-    </>
-  );
-}
+function App() {}
 
 export default ViewSingleProject;
 

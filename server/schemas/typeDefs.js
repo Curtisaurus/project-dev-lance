@@ -65,6 +65,7 @@ const typeDefs = gql`
     updateTags(project: ID!, tags: [String]): Project
     login(email: String!, password: String!): Auth
     addFunding(project: ID!, funding: Float!): Project
+    addinvestment(project:ID!, funding: Float!): Investments
   }
 `;
 
