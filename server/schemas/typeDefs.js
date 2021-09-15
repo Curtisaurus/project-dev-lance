@@ -18,11 +18,11 @@ const typeDefs = gql`
   type Project {
     _id: ID
     name: String!
-    owner: User
+    owner: ID
     description: String
     image: String
     reqFunds: Float!
-    acqFunds: Float!
+    acqFunds: Float
     team: [Teammate]
     investors: [ID]
     tags: [String]
@@ -56,7 +56,7 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    addProject(name: String!, owner: ID!, description: String, image: String, reqFunds: Float!, tags: [String]): Project
+    addProject(name: String!, owner: ID!, description: String, image: String, reqFunds: Float!, tags: [String], launch: String): Project
     addTeammate(project: ID!, role: String!, user: ID): Teammate
     updateTeammate(_id: ID!, role: String, user: ID): Teammate
     updateUser(email: String, password: String, githubUrl: String, linkedinUrl: String): User

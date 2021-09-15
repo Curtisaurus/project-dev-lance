@@ -5,10 +5,10 @@ import { useMutation } from "@apollo/client";
 
 function AddProject() {
   const [formState, setFormState] = useState({
-    // _id,
     name: "",
-    // owner: "",
-    descrtiption: "",
+    // placeholder ID
+    owner: "613ff48a8f639d27a88c8753",
+    description: "",
     image: "",
     reqFunds: "",
     tags: "",
@@ -17,15 +17,30 @@ function AddProject() {
   const [addProject, { error, data }] = useMutation(ADD_PROJECT);
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
+
+    if (name === "tags") {
+      let valueArr = value.trim().split(",");
+
+      setFormState({
+        ...formState,
+        [name]: valueArr,
+      });
+
+    } else {
+      setFormState({
+        ...formState,
+        [name]: value,
+      });
+    }
+
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
+
+    
+
     try {
       const { data } = await addProject({
         variables: { ...formState },
@@ -44,6 +59,7 @@ function AddProject() {
           <Form.Label className="h4">Project Name</Form.Label>
           <Form.Control
             type="text"
+            name="name"
             placeholder="Enter your project name"
             value={formState.name}
             onChange={handleChange}
@@ -55,7 +71,8 @@ function AddProject() {
             as="textarea"
             rows={3}
             placeholder="Tell the world about your project!"
-            value={formState.descrtiption}
+            name="description"
+            value={formState.description}
             onChange={handleChange}
           />
         </Form.Group>
@@ -64,6 +81,7 @@ function AddProject() {
           <Form.Control
             type="url"
             placeholder="Type an image URL"
+            name="image"
             value={formState.image}
             onChange={handleChange}
           />
@@ -74,6 +92,7 @@ function AddProject() {
             <InputGroup.Text>$</InputGroup.Text>
             <Form.Control
               aria-label="Amount (to the nearest dollar)"
+              name="reqFunds"
               value={formState.reqFunds}
               onChange={handleChange}
             />
@@ -84,6 +103,7 @@ function AddProject() {
           <Form.Control
             type="text"
             placeholder="Enter key search tags for your project"
+            name="tags"
             value={formState.tags}
             onChange={handleChange}
           />
