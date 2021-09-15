@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-const User = require('./User');
-const Teammate = require('./Teammate');
 
 const projectSchema = new Schema({
   name: {
@@ -31,11 +29,14 @@ const projectSchema = new Schema({
     type: Number,
     min: 0.00
   },
-  team: [Teammate.schema],
+  team: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Teammate'
+  }],
   investors: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'Investment'
     }
   ],
   tags: [String],

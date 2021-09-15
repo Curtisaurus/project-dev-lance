@@ -2,11 +2,11 @@ import { gql } from '@apollo/client';
 
 export const QUERY_PROJECT = gql`
   query getProjects($project: ID) {
-    projects(_id: $project) {
+    project(_id: $project) {
       _id
       name
       owner {
-        name
+        username
       }
       description
       image
@@ -14,10 +14,15 @@ export const QUERY_PROJECT = gql`
       acqFunds
       team {
         role
-        user
+        user {
+          username
+        }
       }
       investors {
-        name
+        user {
+          username
+        }
+        amount
       }
       tags
     }
@@ -44,11 +49,6 @@ export const QUERY_ALL_PROJECTS = gql`
       image
       reqFunds
       acqFunds
-      team {
-        role
-        user
-      }
-      investors
       tags
       launch
       createdAt
@@ -58,16 +58,19 @@ export const QUERY_ALL_PROJECTS = gql`
 
 export const QUERY_SEARCH_PROJECTS = gql`
   query searchProjects($searchArray: [String]) {
-    projectbyTag(searchArray: $searchArray) {
+    projectSearch(searchArray: $searchArray) {
       _id
       name
       owner {
-        name
+        username
       }
       description
       image
       reqFunds
       acqFunds
+      tags
+      launch
+      createdAt
     }
   }
 `;
@@ -85,6 +88,13 @@ export const QUERY_USER = gql`
         image
         reqFunds
         acqFunds
+      }
+      investments {
+        project {
+          _id
+          name
+        }
+        amount
       }
     }
   }

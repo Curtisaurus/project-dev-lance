@@ -8,10 +8,10 @@ const typeDefs = gql`
     project: ID
   }
 
-  type Investments{
+  type Investment{
     _id: ID
     project: ID!
-    investor: User
+    user: ID
     amount: Float
   }
 
@@ -23,7 +23,7 @@ const typeDefs = gql`
     image: String
     reqFunds: Float!
     acqFunds: Float
-    team: [Teammate]
+    team: [ID]
     investors: [ID]
     tags: [String]
     launch: String
@@ -36,7 +36,8 @@ const typeDefs = gql`
     email: String!
     githubUrl: String
     linkedinUrl: String
-    projects: [Project]
+    projects: [ID]
+    investments: [ID]
   }
 
   type Auth {
@@ -51,7 +52,7 @@ const typeDefs = gql`
     user: User
     project(_id: ID!): Project
     team(project: ID!): [Teammate]
-    investments(user: ID!): [Project]
+    investments(user: ID!): [Investment]
   }
 
   type Mutation {
