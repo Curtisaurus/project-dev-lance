@@ -25,21 +25,17 @@ function AddProject() {
         ...formState,
         [name]: valueArr,
       });
-
     } else {
       setFormState({
         ...formState,
         [name]: value,
       });
     }
-
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
-
-    
 
     try {
       const { data } = await addProject({
