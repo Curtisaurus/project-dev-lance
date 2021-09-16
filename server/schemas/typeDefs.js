@@ -4,27 +4,27 @@ const typeDefs = gql`
   type Teammate {
     _id: ID
     role: String!
-    user: ID
-    project: ID
+    user: User
+    project: Project
   }
 
-  type Investments{
+  type Investment {
     _id: ID
-    project: ID!
-    investor: User
+    project: Project
+    user: User
     amount: Float
   }
 
   type Project {
     _id: ID
     name: String!
-    owner: ID
+    owner: User
     description: String
     image: String
     reqFunds: Float!
     acqFunds: Float
     team: [Teammate]
-    investors: [ID]
+    investors: [Investment]
     tags: [String]
     launch: String
     createdAt: String
@@ -37,6 +37,7 @@ const typeDefs = gql`
     githubUrl: String
     linkedinUrl: String
     projects: [Project]
+    investments: [Investment]
   }
 
   type Auth {
@@ -49,9 +50,9 @@ const typeDefs = gql`
     userProjects(user: ID!): [Project]
     projectSearch(searchArray: [String]!): [Project]
     user: User
-    project(_id: ID!): Project
-    team(project: ID!): [Teammate]
-    investments(user: ID!): [Project]
+    project(_id: ID): Project
+    team(project: ID): [Teammate]
+    investments(user: ID): [Investment]
   }
 
   type Mutation {
@@ -64,7 +65,7 @@ const typeDefs = gql`
     updateTags(project: ID!, tags: [String]): Project
     login(email: String!, password: String!): Auth
     addFunding(project: ID!, funding: Float!): Project
-    addinvestment(project:ID!, funding: Float!): Investments
+    addinvestment(user: ID, project: ID!, amount: Float!): Investment
   }
 `;
 

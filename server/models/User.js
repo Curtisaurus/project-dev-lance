@@ -30,6 +30,12 @@ const userSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'Project'
     }
+  ],
+  investments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Investment'
+    }
   ]
 });
 
