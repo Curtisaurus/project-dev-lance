@@ -2,12 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const teammateSchema = new Schema({
-  role: {
-    type: String,
-    required: true,
-    trim: true
-  },
+const investmentSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
@@ -15,9 +10,11 @@ const teammateSchema = new Schema({
   project: {
     type: Schema.Types.ObjectId,
     ref: 'Project'
+  },
+  amount: {
+    type: Number
   }
 });
 
-const Teammate = mongoose.model('Teammate', teammateSchema);
-
-module.exports = Teammate;
+const Investment = mongoose.model('Investment', investmentSchema);
+module.exports = Investment;

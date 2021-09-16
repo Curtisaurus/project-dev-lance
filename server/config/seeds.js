@@ -1,5 +1,5 @@
 const db = require("./connection");
-const { User, Teammate, Project, Investments } = require("../models");
+const { User, Teammate, Project, Investment } = require("../models");
 
 db.once("open", async () => {
   await User.deleteMany({});
@@ -48,7 +48,7 @@ db.once("open", async () => {
   const projects = await Project.insertMany([
     {
       name: "Best Project EVERRRRRR",
-      owner: User(users[0]),
+      owner: users[0]._id,
       description: "Most complex project to solve your real world needs ever",
       image: "https://gfycat.com/anxiousilliteratebabirusa",
       reqFunds: "50000",
@@ -57,7 +57,7 @@ db.once("open", async () => {
     },
     {
       name: "Wurst Project",
-      owner: User(users[1]),
+      owner: users[1]._id,
       description: "It says hello world barely",
       image: "https://gfycat.com/courteoushandmadebutterfly",
       reqFunds: "50000",
@@ -66,7 +66,7 @@ db.once("open", async () => {
     },
     {
       name: "Ok Project",
-      owner: User(users[2]),
+      owner: users[2]._id,
       description: "Literally Minesweeper",
       image: "https://i.imgur.com/4zdNjKf.png",
       reqFunds: "50000",
@@ -77,25 +77,25 @@ db.once("open", async () => {
 
   console.log("projects seeded");
 
-  const investments = await Investments.insertMany([
+  const investments = await Investment.insertMany([
     {
       role: "1kInvestor",
-      user: User(users[0]),
+      user: users[0]._id,
       amount: 1000,
-      project: Project(projects[0]),
+      project: projects[0]._id,
     },
     {
       role: "10kInvestor",
-      user: User(users[1]),
+      user: users[1]._id,
       amount: 10000,
-      project: Project(projects[1]),
+      project: projects[1]._id,
       
     },
     {
       role: "15kInvestor",
-      user: User(users[0]),
+      user: users[0]._id,
       amount: 15000,
-      project: Project(projects[2]),
+      project: projects[2]._id,
     },
     
   

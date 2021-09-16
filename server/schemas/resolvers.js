@@ -1,35 +1,52 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Project, Teammate, Investments } = require('../models');
+const { User, Project, Teammate, Investment } = require('../models');
 const { signToken } = require('../utils/auth');
 // const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
     allProjects: async () => {
-      return await Project.find().limit(12);
+      return await Project.find().limit(12).populate('owner', 'username');
     },
     userProjects: async (parent, args, context) => {
-      return await Project.find({ owner: context.user._id });
+      return await Project.find({ owner: context.user._id }).populate('owner', 'username');
     },
     projectSearch: async (parent, args) => {
-      return await Project.find({ $or: [{ name: { $in: args }}, { tags: { $in: args }}] });
+      return await Project.find({ $or: [{ name: { $in: args }}, { tags: { $in: args }}] }).populate('owner', 'username');
     },
     user: async (parent, args, context) => {
-      return await User.findById(context.user._id).populate('projects');
+      return await User.findById(context.user._id).populate('projects').populate({ path: 'investments', populate: {path: 'project', select: 'name _id'}});
     },
-    project: async (parent, { projectId }) => {
-      return await Project.find({ _id: projectId }).populate('team').populate('investors');
+    project: async (parent, { _id }) => {
+      return await Project.findById(_id)
+        .populate('owner', 'username')
+        .populate({ 
+          path:'team',
+          select: 'role user',
+          populate: {
+            path: 'user',
+            select: 'username'
+          }
+        })
+        .populate({
+          path: 'investors',
+          select: 'user amount',
+          populate: {
+            path: 'user',
+            select: 'username'
+          }
+        });
     },
     team: async (parent, { project }) => {
-      return await Teammate.find({ project: project });
+      return await Teammate.find({ project: project }).populate('user', 'username');
     },
     investments: async (parent, args, context) => {
-      return await Project.find({ investors: context.user._id });
+      return await Investment.find({ user: context.user._id}).populate('project', "name _id");
     }
   },
   Mutation: {
-    addinvestment:async (parent, args) => {
-      const investments = await Investments.create(args);
+    addinvestment: async (parent, args) => {
+      const investments = await Investment.create(args);
       return investments;
     },
     addUser: async (parent, args) => {
