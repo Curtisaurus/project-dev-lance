@@ -15,7 +15,7 @@ function AddTeammates(teammate) {
 
   return (
     //Render AddTeamate Component
-    <Container className="bg-light p-3 my-5">
+    <Container>
       <Form className="p-3">
         <h2>Update Dev Team</h2>
         <h4>Add Roles</h4>
