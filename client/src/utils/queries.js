@@ -25,6 +25,8 @@ export const QUERY_PROJECT = gql`
         amount
       }
       tags
+      launch
+      createdAt
     }
   }
 `;

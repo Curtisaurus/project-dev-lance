@@ -17,8 +17,8 @@ const resolvers = {
     user: async (parent, args, context) => {
       return await User.findById(context.user._id).populate('projects').populate({ path: 'investments', populate: {path: 'project', select: 'name _id'}});
     },
-    project: async (parent, { projectId }) => {
-      return await Project.find({ _id: projectId })
+    project: async (parent, { _id }) => {
+      return await Project.findById(_id)
         .populate('owner', 'username')
         .populate({ 
           path:'team',
@@ -41,11 +41,11 @@ const resolvers = {
       return await Teammate.find({ project: project }).populate('user', 'username');
     },
     investments: async (parent, args, context) => {
-      return await Investment.find({ user: context.user._id}).populate('project');
+      return await Investment.find({ user: context.user._id}).populate('project', "name _id");
     }
   },
   Mutation: {
-    addinvestment:async (parent, args) => {
+    addinvestment: async (parent, args) => {
       const investments = await Investment.create(args);
       return investments;
     },

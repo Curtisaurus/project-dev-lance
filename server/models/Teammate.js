@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const teammmateSchema = new Schema({
+const teammateSchema = new Schema({
   role: {
     type: String,
     required: true,
@@ -18,6 +18,6 @@ const teammmateSchema = new Schema({
   }
 });
 
-const Teammmate = mongoose.model('Teammmate', teammmateSchema);
+const Teammate = mongoose.model('Teammate', teammateSchema);
 
-module.exports = Teammmate;
+module.exports = Teammate;
