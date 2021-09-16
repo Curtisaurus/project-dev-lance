@@ -6,6 +6,7 @@ import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
 // import ADD_USER for try/catch/mutation
 import { ADD_USER } from "../utils/mutations";
+import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 const SignupForm = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({
@@ -67,7 +68,9 @@ const SignupForm = () => {
           Something went wrong with your signup!
         </Alert>
         <Form.Group>
-          <Form.Label htmlFor="username">Username</Form.Label>
+          <Form.Label htmlFor="username">
+            <FaUser className="mx-1" /> Username
+          </Form.Label>
           <Form.Control
             type="text"
             placeholder="Your username"
@@ -81,7 +84,9 @@ const SignupForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group>
-          <Form.Label htmlFor="email">Email</Form.Label>
+          <Form.Label htmlFor="email">
+            <FaEnvelope className="mx-1" /> Email
+          </Form.Label>
           <Form.Control
             type="email"
             placeholder="Your email address"
@@ -95,7 +100,9 @@ const SignupForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group>
-          <Form.Label htmlFor="password">Password</Form.Label>
+          <Form.Label htmlFor="password">
+            <FaLock className="mx-1" /> Password
+          </Form.Label>
           <Form.Control
             type="password"
             placeholder="Your password"
