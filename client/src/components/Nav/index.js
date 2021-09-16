@@ -1,10 +1,11 @@
 import React from "react";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function NavigationBar() {
   return (
     <>
-      <Navbar fixed="top" bg="dark" variant="dark" expand="lg" className="p-4">
+      <Navbar bg="dark" variant="dark" expand="lg" className="p-4">
         <Container fluid>
           <Navbar.Brand href="/projects" className="text-white">
             devLancer
@@ -26,12 +27,14 @@ function NavigationBar() {
                 Login
               </Nav.Link>
               <Nav.Link href="/logout" className="text-white mx-3">
-                logout
+                Logout
               </Nav.Link>
             </Nav>
-            <Button variant="success" className="mx-3">
-              Start a Project
-            </Button>
+            <Link to="/create-project">
+              <Button variant="success" className="mx-3">
+                Start a Project
+              </Button>
+            </Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>

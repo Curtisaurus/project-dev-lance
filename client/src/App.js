@@ -19,6 +19,7 @@ import UpdateProject from "./components/UpdateProjectForm/index";
 import JoinTeam from "./components/JoinTeamForm/index";
 import ViewSingleProject from "./components/ViewSingleProject";
 import NavigationBar from "./components/Nav";
+// import LoginForm from "./components/LoginForm";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -55,7 +56,8 @@ function App() {
             <Route exact path="/update-project" component={UpdateProject} />
             <Route exact path="/join-team" component={JoinTeam} />
             <Route exact path="/add-teammates" component={AddTeammates} />
-            <Route component={ViewAllProjectCards} />
+            {/* <Route exact path="/login" component={LoginForm} /> */}
+            {/* <Route component={ViewAllProjectCards} /> */}
           </Switch>
           <ViewSingleProject
             show={modalShow}

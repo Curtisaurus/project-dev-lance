@@ -1,8 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { QUERY_PROJECT } from "../../utils/queries";
 import { Modal, Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
 function ViewSingleProject(props) {
+  const { _id } = props;
+
+  // Use query
+  // All props needed will be in the response from the query
+
   return (
     <Modal
       {...props}
@@ -12,16 +18,16 @@ function ViewSingleProject(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
+          Project Title
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Centered Modal</h4>
         <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
+          This is a project description. Cras mattis consectetur purus sit amet
+          fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget
+          quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
         </p>
+        <h4>Team Members</h4>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
@@ -33,19 +39,6 @@ function ViewSingleProject(props) {
 function App() {}
 
 export default ViewSingleProject;
-
-// function ViewSingleProject(project) {
-//   const {
-//     _id,
-//     image,
-//     projectName,
-//     ownerName,
-//     date,
-//     description,
-//     reqFunds,
-//     acqFunds,
-//     launch,
-//   } = project;
 
 //   return (
 //     <>
