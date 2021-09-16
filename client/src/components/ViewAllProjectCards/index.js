@@ -3,7 +3,16 @@ import ProjectCard from "../ProjectCard";
 // import { UPDATE_PROJECTS } from "../../utils/actions";
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_PROJECTS } from "../../utils/queries";
-import { Container, Row, Col } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  InputGroup,
+  FormControl,
+  Button,
+  Dropdown,
+  DropdownButton,
+} from "react-bootstrap";
 
 // import { idbPromise } from '../../utils/helpers';
 import spinner from "../../assets/images/spinner.gif";
@@ -70,6 +79,37 @@ function ViewAllProjectCards(props) {
 
   return (
     <div>
+      <Container fluid className="bg-light py-3">
+        <Row>
+          <Col md>
+            <InputGroup className="mb-3">
+              <Button variant="success px-5" id="button-addon2">
+                Search
+              </Button>
+              <FormControl
+                placeholder="Enter dev role"
+                aria-label="dev-role"
+                aria-describedby="basic-addon2"
+              />
+            </InputGroup>
+          </Col>
+          <Col md>
+            <InputGroup className="mb-3">
+              <DropdownButton
+                variant="outline-secondary"
+                title="Dropdown"
+                id="input-group-dropdown-2"
+                align="end"
+              >
+                <Dropdown.Item href="#">Action</Dropdown.Item>
+                <Dropdown.Item href="#">Another action</Dropdown.Item>
+                <Dropdown.Item href="#">Something else here</Dropdown.Item>
+              </DropdownButton>
+              <FormControl aria-label="Text input with dropdown button" />
+            </InputGroup>
+          </Col>
+        </Row>
+      </Container>
       <Container>
         <Row xs={1} md={2} lg={4} className="mx-4 my-4">
           {projects.length ? (
