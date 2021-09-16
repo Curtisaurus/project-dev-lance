@@ -3,32 +3,6 @@ import { Navbar, Nav, Container, Button } from "react-bootstrap";
 
 function NavigationBar() {
   return (
-<<<<<<< HEAD
-    <React.Fragment>
-      <Nav>
-        <NavbarContainer>
-          <NavLogo to="/">devLancer</NavLogo>
-          <MobileIcon onClick={toggle}>
-            <FaBars />
-          </MobileIcon>
-          <NavMenu>
-            <NavItem>
-              <NavLinks to="login">Login</NavLinks>
-            </NavItem>
-            <NavItem>
-              <NavLinks to="logout">Logout</NavLinks>
-            </NavItem>
-            <NavItem>
-              <NavLinks to="/">Dashboard</NavLinks>
-            </NavItem>
-          </NavMenu>
-          <NavBtn>
-            <NavBtnLink to="/project-form">Start a Project</NavBtnLink>
-          </NavBtn>
-        </NavbarContainer>
-      </Nav>
-    </React.Fragment>
-=======
     <>
       <Navbar fixed="top" bg="dark" variant="dark" expand="lg" className="p-4">
         <Container fluid>
@@ -62,7 +36,6 @@ function NavigationBar() {
         </Container>
       </Navbar>
     </>
->>>>>>> e0604c6b3b2f048b55fc1b41264dbe69c5e40277
   );
 }
 
