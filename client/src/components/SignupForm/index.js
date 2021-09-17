@@ -1,12 +1,18 @@
 //add in useEffect
 import React, { useState, useEffect } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert, Container } from "react-bootstrap";
 // change to useMutation from apollo
 import { useMutation } from "@apollo/client";
-import Auth from "../utils/auth";
+import Auth from "../../utils/auth";
 // import ADD_USER for try/catch/mutation
-import { ADD_USER } from "../utils/mutations";
-import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import { ADD_USER } from "../../utils/mutations";
+import {
+  FaUser,
+  FaEnvelope,
+  FaLock,
+  FaGithub,
+  FaLinkedin,
+} from "react-icons/fa";
 const SignupForm = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({
@@ -56,79 +62,148 @@ const SignupForm = () => {
   };
   return (
     <>
-      {/* This is needed for the validation functionality above */}
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        {/* show alert if server response is bad */}
-        <Alert
-          dismissible
-          onClose={() => setShowAlert(false)}
-          show={showAlert}
-          variant="danger"
-        >
-          Something went wrong with your signup!
-        </Alert>
-        <Form.Group>
-          <Form.Label htmlFor="username">
-            <FaUser className="mx-1" /> Username
-          </Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Your username"
-            name="username"
-            onChange={handleInputChange}
-            value={userFormData.username}
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Username is required!
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label htmlFor="email">
-            <FaEnvelope className="mx-1" /> Email
-          </Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Your email address"
-            name="email"
-            onChange={handleInputChange}
-            value={userFormData.email}
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Email is required!
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label htmlFor="password">
-            <FaLock className="mx-1" /> Password
-          </Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Your password"
-            name="password"
-            onChange={handleInputChange}
-            value={userFormData.password}
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Password is required!
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Button
-          disabled={
-            !(
-              userFormData.username &&
-              userFormData.email &&
-              userFormData.password
-            )
-          }
-          type="submit"
-          variant="success"
-        >
-          Submit
-        </Button>
-      </Form>
+      <Container>
+        {/* This is needed for the validation functionality above */}
+        <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+          {/* show alert if server response is bad */}
+          <Alert
+            dismissible
+            onClose={() => setShowAlert(false)}
+            show={showAlert}
+            variant="danger"
+          >
+            Something went wrong with your signup!
+          </Alert>
+
+          {/* Username - Required */}
+          <Form.Group>
+            <Form.Label htmlFor="username">
+              <FaUser className="mx-1" /> Username
+            </Form.Label>
+            <Form.Control
+              type="text"
+              placeholder=""
+              name="username"
+              onChange={handleInputChange}
+              value={userFormData.username}
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+              Username is required!
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          {/* First Name - Required */}
+          <Form.Group>
+            <Form.Label htmlFor="firstName">First Name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder=""
+              name="firstName"
+              onChange={handleInputChange}
+              value={userFormData.firstName}
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+              First name is required!
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          {/* Last Name - Required */}
+          <Form.Group>
+            <Form.Label htmlFor="lastName">Last Name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder=""
+              name="lastName"
+              onChange={handleInputChange}
+              value={userFormData.lastName}
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+              Last name is required!
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          {/* Email - Required */}
+          <Form.Group>
+            <Form.Label htmlFor="email">
+              <FaEnvelope className="mx-1" /> Email
+            </Form.Label>
+            <Form.Control
+              type="email"
+              placeholder=""
+              name="email"
+              onChange={handleInputChange}
+              value={userFormData.email}
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+              Email is required!
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          {/* GitHub Profile - Not Required */}
+          <Form.Group>
+            <Form.Label htmlFor="github">
+              <FaGithub className="mx-1" /> GitHub Profile (optional)
+            </Form.Label>
+            <Form.Control
+              type="url"
+              placeholder=""
+              name="github"
+              onChange={handleInputChange}
+              value={userFormData.github}
+            />
+          </Form.Group>
+
+          {/* LinkedIn Profile - Not Required */}
+          <Form.Group>
+            <Form.Label htmlFor="linkedin">
+              <FaLinkedin className="mx-1" />
+              LinkedIn Profile (optional)
+            </Form.Label>
+            <Form.Control
+              type="url"
+              placeholder=""
+              name="linkedIn"
+              onChange={handleInputChange}
+              value={userFormData.linkedin}
+            />
+          </Form.Group>
+
+          {/* Password - Required */}
+          <Form.Group>
+            <Form.Label htmlFor="password">
+              <FaLock className="mx-1" /> Password
+            </Form.Label>
+            <Form.Control
+              type="password"
+              placeholder=""
+              name="password"
+              onChange={handleInputChange}
+              value={userFormData.password}
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+              Password is required!
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Button
+            disabled={
+              !(
+                userFormData.username &&
+                userFormData.email &&
+                userFormData.password
+              )
+            }
+            type="submit"
+            variant="success"
+          >
+            Submit
+          </Button>
+        </Form>
+      </Container>
     </>
   );
 };

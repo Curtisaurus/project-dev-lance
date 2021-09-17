@@ -119,8 +119,8 @@ function AddProject() {
             {/* <Form.Control type="date" name='date_of_birth' error={errors.date_of_birth} ref={register} /> */}
           </Form.Group>
           <p>
-            After submitting your project, you will then add developer roles to
-            your team.
+            Note: After submitting your project, you will add open developer
+            positions to your team.
           </p>
           {/* Use redirect on submit to redirect to AddTeammates Form */}
           <Button variant="primary" type="submit">
