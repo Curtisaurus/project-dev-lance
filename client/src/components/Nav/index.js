@@ -21,7 +21,7 @@ function NavigationBar() {
               navbarScroll
             >
               <Nav.Link href="/projects" className="text-white mx-3">
-                Dashboard
+                Discover
               </Nav.Link>
               <Nav.Link href="/login" className="text-white mx-3">
                 Login

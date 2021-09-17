@@ -16,9 +16,9 @@ import ViewAllProjectCards from "./components/ViewAllProjectCards/index";
 import AddProject from "./components/AddProjectForm/index";
 import AddTeammates from "./components/TeammatesForm/index";
 import UpdateProject from "./components/UpdateProjectForm/index";
-import JoinTeam from "./components/JoinTeamForm/index";
 import ViewSingleProject from "./components/ViewSingleProject";
 import NavigationBar from "./components/Nav";
+import SignupForm from "./components/SignupForm";
 // import LoginForm from "./components/LoginForm";
 
 const httpLink = createHttpLink({
@@ -52,9 +52,9 @@ function App() {
             <Route exact path="/projects">
               <ViewAllProjectCards setModalShow={setModalShow} />
             </Route>
+            <Route exact path="/signup" component={SignupForm} />
             <Route exact path="/create-project" component={AddProject} />
             <Route exact path="/update-project" component={UpdateProject} />
-            <Route exact path="/join-team" component={JoinTeam} />
             <Route exact path="/add-teammates" component={AddTeammates} />
             {/* <Route exact path="/login" component={LoginForm} /> */}
             {/* <Route component={ViewAllProjectCards} /> */}
