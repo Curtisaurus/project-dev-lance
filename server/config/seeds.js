@@ -99,6 +99,9 @@ db.once("open", async () => {
     },
     
   
-  ])
+  ]);
+
+  console.log("investments seeded");
+  
   process.exit();
 });
