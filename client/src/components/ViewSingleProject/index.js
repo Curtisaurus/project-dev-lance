@@ -40,6 +40,9 @@ function ViewSingleProject(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="p-4">
+        <Button variant="success px-5 mb-3" id="button-addon2">
+          Edit Project
+        </Button>
         <h5 className="mb-3">
           <FaUser className="mx-1" /> Created by [firstName] [lastName] on
           [date].
