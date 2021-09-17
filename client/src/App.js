@@ -42,6 +42,7 @@ const client = new ApolloClient({
 
 function App() {
   const [modalShow, setModalShow] = React.useState(false);
+  const [modalId, setModalId] = React.useState("Test");
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -50,7 +51,7 @@ function App() {
           <NavigationBar />
           <Switch>
             <Route exact path="/projects">
-              <ViewAllProjectCards setModalShow={setModalShow} />
+              <ViewAllProjectCards setModalShow={setModalShow} setModalId={setModalId} />
             </Route>
             <Route exact path="/signup" component={SignupForm} />
             <Route exact path="/create-project" component={AddProject} />
@@ -61,6 +62,7 @@ function App() {
           </Switch>
           <ViewSingleProject
             show={modalShow}
+            project={modalId}
             onHide={() => setModalShow(false)}
           />{" "}
         </div>

@@ -1,12 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
-import style from "./style.css";
+// import style from "./style.css";
 
 function ProjectCard(project) {
   const {
     _id,
-    image,
     projectName,
     ownerName,
     date,
@@ -15,12 +14,13 @@ function ProjectCard(project) {
     acqFunds,
     launch,
     setModalShow,
+    setModalId
   } = project;
 
   return (
     <>
       <Card className="my-3 project-card">
-        <a onClick={() => setModalShow(true)}>
+        <div onClick={() => {console.log(_id); setModalId(_id); setModalShow(true);}}>
           <Card.Header as="h4">{projectName}</Card.Header>
           <Card.Body>
             <Card.Text>
@@ -34,7 +34,7 @@ function ProjectCard(project) {
           <Card.Footer>
             Funding: ${acqFunds} / ${reqFunds}
           </Card.Footer>
-        </a>
+        </div>
       </Card>
     </>
   );
