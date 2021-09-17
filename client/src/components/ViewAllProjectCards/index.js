@@ -3,6 +3,7 @@ import ProjectCard from "../ProjectCard";
 // import { UPDATE_PROJECTS } from "../../utils/actions";
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_PROJECTS } from "../../utils/queries";
+import { dateFormat } from "../../utils/helpers"
 import {
   Container,
   Row,
@@ -63,15 +64,15 @@ function ViewAllProjectCards(props) {
     projects = data.allProjects;
   }
 
-  function dateFormat(date) {
-    let dateObj = new Date(parseInt(date));
+  // function dateFormat(date) {
+  //   let dateObj = new Date(parseInt(date));
 
-    const options = { year: "numeric", month: "long", day: "numeric" };
+  //   const options = { year: "numeric", month: "long", day: "numeric" };
 
-    let formatted = dateObj.toLocaleDateString("en-US", options);
+  //   let formatted = dateObj.toLocaleDateString("en-US", options);
 
-    return formatted;
-  }
+  //   return formatted;
+  // }
 
   return (
     <div>
