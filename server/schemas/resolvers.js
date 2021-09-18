@@ -57,7 +57,6 @@ const resolvers = {
       return { token, user };
     },
     addProject: async (parent, args) => {
-      console.log(context.user)
       let project = await Project.create(args);
       return project;
     },
