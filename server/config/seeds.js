@@ -32,9 +32,9 @@ db.once("open", async () => {
   await Teammate.deleteMany();
 
   const teammates = await Teammate.insertMany([
-    { role: "Administrator" },
-    { role: "Professor" },
-    { role: "BackEnd Dev" },
+    { role: "Administrator", user: users[0]._id },
+    { role: "Professor", user: users[1]._id },
+    { role: "BackEnd Dev", user: users[2]._id },
     { role: "FrontEnd Dev" },
     { role: "FullStackDev" },
     { role: "SQLGuy" },
@@ -42,6 +42,28 @@ db.once("open", async () => {
   ]);
 
   console.log("teammates seeded");
+
+  await Investment.deleteMany();
+
+  const investments = await Investment.insertMany([
+    {
+      role: "1kInvestor",
+      user: users[0]._id,
+      amount: 1000
+    },
+    {
+      role: "10kInvestor",
+      user: users[1]._id,
+      amount: 10000
+    },
+    {
+      role: "15kInvestor",
+      user: users[0]._id,
+      amount: 15000,
+    }
+  ]);
+
+  console.log("investments seeded");
 
   await Project.deleteMany();
 
@@ -55,6 +77,8 @@ db.once("open", async () => {
       acqFunds: "45000",
       launch: "1671929645000",
       tags: ["complex", "perfect", "winning"],
+      team: [teammates[0]._id, teammates[1]._id, teammates[2]._id],
+      investors: [investments[0]._id, investments[1]._id, investments[2]._id]
     },
     {
       name: "Wurst Project",
@@ -79,29 +103,6 @@ db.once("open", async () => {
   ]);
 
   console.log("projects seeded");
-
-  const investments = await Investment.insertMany([
-    {
-      role: "1kInvestor",
-      user: users[0]._id,
-      amount: 1000,
-      project: projects[0]._id,
-    },
-    {
-      role: "10kInvestor",
-      user: users[1]._id,
-      amount: 10000,
-      project: projects[1]._id,
-    },
-    {
-      role: "15kInvestor",
-      user: users[0]._id,
-      amount: 15000,
-      project: projects[2]._id,
-    },
-  ]);
-
-  console.log("investments seeded");
 
   process.exit();
 });
