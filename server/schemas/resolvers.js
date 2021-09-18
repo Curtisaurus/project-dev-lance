@@ -56,8 +56,8 @@ const resolvers = {
 
       return { token, user };
     },
-    addProject: async (parent, args) => {
-      let project = await Project.create(args);
+    addProject: async (parent, args, context) => {
+      let project = await Project.create({...args, owner: context.user._id});
       return project;
     },
     addTeammate: async (parent, args) => {
