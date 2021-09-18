@@ -6,7 +6,7 @@ import { useMutation } from "@apollo/client";
 function AddProject() {
   const [formState, setFormState] = useState({
     name: "",
-    // placeholder ID
+    // placeholder ID 
     // owner: "614543d0a299d23d2871f940",
     description: "",
     image: "",
