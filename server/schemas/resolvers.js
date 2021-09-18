@@ -57,14 +57,15 @@ const resolvers = {
       return { token, user };
     },
     addProject: async (parent, args, context) => {
+      console.log(context.user)
       let project = await Project.create({...args, owner: context.user._id});
       return project;
     },
     addTeammate: async (parent, args) => {
       return await Teammate.create(args);
     },
-    updateTeammate: async (parent, args) => {
-      return await Teammate.findByIdAndUpdate(args, { new: true });
+    updateTeammate: async (parent, { _id }, context) => {
+      return await Teammate.findByIdAndUpdate(_id, {user: context.user._id}, { new: true });
     },
     updateUser: async (parent, args, context) => {
       if (context.user) {

@@ -19,6 +19,8 @@ const SignupForm = () => {
     username: "",
     email: "",
     password: "",
+    github: "",
+    linkedin: ""
   });
   // set state for form validation
   const [validated] = useState(false);
@@ -58,6 +60,8 @@ const SignupForm = () => {
       username: "",
       email: "",
       password: "",
+      github: "",
+      linkedin: ""
     });
   };
   return (
@@ -95,38 +99,6 @@ const SignupForm = () => {
             />
             <Form.Control.Feedback type="invalid">
               Username is required!
-            </Form.Control.Feedback>
-          </Form.Group>
-
-          {/* First Name - Required */}
-          <Form.Group>
-            <Form.Label htmlFor="firstName">First Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder=""
-              name="firstName"
-              onChange={handleInputChange}
-              value={userFormData.firstName}
-              required
-            />
-            <Form.Control.Feedback type="invalid">
-              First name is required!
-            </Form.Control.Feedback>
-          </Form.Group>
-
-          {/* Last Name - Required */}
-          <Form.Group>
-            <Form.Label htmlFor="lastName">Last Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder=""
-              name="lastName"
-              onChange={handleInputChange}
-              value={userFormData.lastName}
-              required
-            />
-            <Form.Control.Feedback type="invalid">
-              Last name is required!
             </Form.Control.Feedback>
           </Form.Group>
 
@@ -200,8 +172,6 @@ const SignupForm = () => {
               !(
                 userFormData.username &&
                 userFormData.email &&
-                userFormData.firstName &&
-                userFormData.lastName &&
                 userFormData.password
               )
             }

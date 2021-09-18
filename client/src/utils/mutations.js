@@ -45,7 +45,7 @@ export const ADD_PROJECT = gql`
       _id
       name
       owner {
-        username
+        _id
       }
       description
       image

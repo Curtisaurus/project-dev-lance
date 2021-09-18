@@ -35,12 +35,13 @@ function AddProject() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
 
     try {
       const { data } = await addProject({
         variables: { ...formState },
       });
+      
+      console.log(data)
     } catch (e) {
       console.error(e);
     }
