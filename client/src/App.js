@@ -23,7 +23,7 @@ import LoginForm from "./components/LoginForm";
 // import LoginForm from "./components/LoginForm";
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:3001/graphql",
+  uri: "/graphql"
 });
 
 const authLink = setContext((_, { headers }) => {
