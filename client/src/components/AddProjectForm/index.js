@@ -6,8 +6,8 @@ import { useMutation } from "@apollo/client";
 function AddProject() {
   const [formState, setFormState] = useState({
     name: "",
-    // placeholder ID
-    // owner: "614543d0a299d23d2871f940",
+    // placeholder ID 
+    owner: "6145779163df9100165ab995",
     description: "",
     image: "",
     reqFunds: 0.99,
@@ -35,12 +35,13 @@ function AddProject() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
 
     try {
       const { data } = await addProject({
         variables: { ...formState },
       });
+      
+      console.log(data)
     } catch (e) {
       console.error(e);
     }
