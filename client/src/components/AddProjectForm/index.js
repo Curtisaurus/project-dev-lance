@@ -7,7 +7,7 @@ function AddProject() {
   const [formState, setFormState] = useState({
     name: "",
     // placeholder ID
-    owner: "614543d0a299d23d2871f940",
+    // owner: "614543d0a299d23d2871f940",
     description: "",
     image: "",
     reqFunds: 0.99,
