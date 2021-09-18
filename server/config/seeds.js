@@ -53,7 +53,8 @@ db.once("open", async () => {
       image: "https://gfycat.com/anxiousilliteratebabirusa",
       reqFunds: "50000",
       acqFunds: "45000",
-      launch: "1671929645000"
+      launch: "1671929645000",
+      tags: ["complex", "perfect", "winning"]
     },
     {
       name: "Wurst Project",
@@ -62,7 +63,8 @@ db.once("open", async () => {
       image: "https://gfycat.com/courteoushandmadebutterfly",
       reqFunds: "50000",
       acqFunds: "45000",
-      launch: "1739494445000"
+      launch: "1739494445000",
+      tags: ["helloworld", "terrible", "yikes"]
     },
     {
       name: "Ok Project",
@@ -71,7 +73,8 @@ db.once("open", async () => {
       image: "https://i.imgur.com/4zdNjKf.png",
       reqFunds: "50000",
       acqFunds: "45000",
-      launch: "1640998445000"
+      launch: "1640998445000",
+      tags: ["average", "game", "minesweeper"]
     },
   ]);
 
@@ -96,12 +99,15 @@ db.once("open", async () => {
       user: users[0]._id,
       amount: 15000,
       project: projects[2]._id,
-    },
-    
+    }  
+  ]);
   
+<<<<<<< HEAD
+=======
   ]);
 
   console.log("investments seeded");
   
+>>>>>>> main
   process.exit();
 });

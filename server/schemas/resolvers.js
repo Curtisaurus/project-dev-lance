@@ -14,11 +14,11 @@ const resolvers = {
     projectSearch: async (parent, args) => {
       return await Project.find({ $or: [{ name: { $in: args }}, { tags: { $in: args }}] }).populate('owner', 'username');
     },
-    user: async (parent, args, context) => {
-      return await User.findById(context.user._id).populate('projects').populate({ path: 'investments', populate: {path: 'project', select: 'name _id'}});
+    user: async (parent, { _id }) => {
+      return await User.findById(_id).populate('projects').populate({ path: 'investments', populate: {path: 'project', select: 'name _id'}});
     },
     project: async (parent, { _id }) => {
-      return await Project.findById(_id)
+      let project = await Project.findById(_id)
         .populate('owner', 'username')
         .populate({ 
           path:'team',
@@ -36,6 +36,7 @@ const resolvers = {
             select: 'username'
           }
         });
+      return project
     },
     team: async (parent, { project }) => {
       return await Teammate.find({ project: project }).populate('user', 'username');
@@ -56,7 +57,8 @@ const resolvers = {
       return { token, user };
     },
     addProject: async (parent, args) => {
-      return await Project.create(args);
+      let project = await Project.create(args);
+      return project;
     },
     addTeammate: async (parent, args) => {
       return await Teammate.create(args);
