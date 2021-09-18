@@ -2,7 +2,7 @@ import React from "react";
 // import { NavLink } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_PROJECT } from "../../utils/queries";
-import { dateFormat } from "../../utils/helpers"
+import { dateFormat } from "../../utils/helpers";
 import {
   // Container,
   Form,
@@ -22,15 +22,11 @@ function ViewSingleProject(props) {
 
   // Use query
   // All props needed will be in the response from the query
-  const { loading, data, error } = useQuery(QUERY_PROJECT, { variables: { project: project }});
+  const { loading, data, error } = useQuery(QUERY_PROJECT, {
+    variables: { project: project },
+  });
 
-  // Progress Bar Dynamic Label
-  // const now = 60;
-  // const progressInstance = <ProgressBar now={now} label={`${now}%`} />;
-  // render(progressInstance);
-
-  if(!loading && !error) {
-
+  if (!loading && !error) {
     let project = data.project;
 
     return (
@@ -42,7 +38,11 @@ function ViewSingleProject(props) {
       >
         <Image src="" fluid />
         <Modal.Header closeButton>
-          <Modal.Title as="h1" id="contained-modal-title-vcenter" className="p-2">
+          <Modal.Title
+            as="h1"
+            id="contained-modal-title-vcenter"
+            className="p-2"
+          >
             {project.name}
           </Modal.Title>
         </Modal.Header>
@@ -51,19 +51,15 @@ function ViewSingleProject(props) {
             Edit Project
           </Button>
           <h5 className="mb-3">
-            <FaUser className="mx-1" /> Created by [firstName] [lastName] on
-            [date].
+            <FaUser className="mx-1" /> Created by {project.owner.username} on{" "}
+            {dateFormat(project.createdAt)}
           </h5>
           <h5 className="mt-3">
-            <FaRocket className="mx-1" /> Product Launch Date: [launchdate]
+            <FaRocket className="mx-1" /> Product Launch Date:{" "}
+            {dateFormat(project.launch)}
           </h5>
           <Card className="bg-light p-4">
-            <p>
-              This is a project description. Cras mattis consectetur purus sit
-              amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
-              eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at
-              eros.
-            </p>
+            <p>{project.description}</p>
           </Card>
 
           {/* Roles and Team Members Section */}
@@ -72,6 +68,23 @@ function ViewSingleProject(props) {
             <Form>
               <h5>Roles & Teammates</h5>
               <ListGroup variant="flush">
+                {project.team.map((teammate) => {
+                  <>
+                    <ListGroup.Item key={teammate.role}>
+                      <FaUser className="mx-1" /> {teammate.role}:
+                      {teammate.user.username ? (
+                        teammate.user.username
+                      ) : (
+                        <Button variant="outline-success" className="m-2">
+                          Join Team
+                        </Button>
+                      )}{" "}
+                      <FaGithub className="mx-1" />
+                      <FaLinkedin className="mx-1" />
+                    </ListGroup.Item>
+                  </>;
+                })}
+
                 <ListGroup.Item>
                   <FaUser className="mx-1" /> Front-End Developer
                   <Button variant="outline-success" className="m-2">
@@ -108,12 +121,30 @@ function ViewSingleProject(props) {
           {/* Investors Section */}
           <h3 className="mt-4">Project Funding</h3>
           <Card className="bg-light p-4">
-            <h5>Funding Goal: [Amount]</h5>
-            <ProgressBar now={60} />
+            <h5>
+              Funding Goal:{" "}
+              {project.reqFunds.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </h5>
+            <h5>
+              Funds Acquired:{" "}
+              {project.acqFunds.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </h5>
+            <ProgressBar
+              now={(project.acqFunds / project.reqFunds) * 100}
+              label={`${(project.acqFunds / project.reqFunds) * 100}%`}
+            />
 
             <Form>
               <Form.Group className="mb-3" controlId="">
-                <Form.Label className="h5 mt-4">Invest in the Project</Form.Label>
+                <Form.Label className="h5 mt-4">
+                  Invest in the Project
+                </Form.Label>
                 <InputGroup className="mb-3">
                   <InputGroup.Text>$</InputGroup.Text>
                   <Form.Control
@@ -147,9 +178,6 @@ function ViewSingleProject(props) {
             </Table>
           </Card>
         </Modal.Body>
-        {/* <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer> */}
       </Modal>
     );
   } else {
@@ -161,12 +189,16 @@ function ViewSingleProject(props) {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title as="h1" id="contained-modal-title-vcenter" className="p-2">
+          <Modal.Title
+            as="h1"
+            id="contained-modal-title-vcenter"
+            className="p-2"
+          >
             Loading...
           </Modal.Title>
         </Modal.Header>
       </Modal>
-    )
+    );
   }
 }
 
