@@ -58,7 +58,7 @@ const resolvers = {
     },
     addProject: async (parent, args, context) => {
       console.log(context.user)
-      let project = await Project.create({...args, owner: context.user._id});
+      let project = await Project.create(args);
       return project;
     },
     addTeammate: async (parent, args) => {
