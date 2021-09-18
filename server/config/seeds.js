@@ -49,18 +49,18 @@ db.once("open", async () => {
     {
       role: "1kInvestor",
       user: users[0]._id,
-      amount: 1000
+      amount: 1000,
     },
     {
       role: "10kInvestor",
       user: users[1]._id,
-      amount: 10000
+      amount: 10000,
     },
     {
       role: "15kInvestor",
       user: users[0]._id,
       amount: 15000,
-    }
+    },
   ]);
 
   console.log("investments seeded");
@@ -77,8 +77,14 @@ db.once("open", async () => {
       acqFunds: "45000",
       launch: "1671929645000",
       tags: ["complex", "perfect", "winning"],
-      team: [teammates[0]._id, teammates[1]._id, teammates[2]._id],
-      investors: [investments[0]._id, investments[1]._id, investments[2]._id]
+      team: [
+        teammates[0]._id,
+        teammates[1]._id,
+        teammates[2]._id,
+        teammates[3]._id,
+        teammates[4]._id,
+      ],
+      investors: [investments[0]._id, investments[1]._id, investments[2]._id],
     },
     {
       name: "Wurst Project",

@@ -29,6 +29,8 @@ function ViewSingleProject(props) {
   if (!loading && !error) {
     let project = data.project;
 
+    console.log(project.investors);
+
     return (
       <Modal
         {...props}
@@ -68,11 +70,11 @@ function ViewSingleProject(props) {
             <Form>
               <h5>Roles & Teammates</h5>
               <ListGroup variant="flush">
-                {project.team.map((teammate) => {
+                {project.team.map((teammate) => (
                   <>
                     <ListGroup.Item key={teammate.role}>
-                      <FaUser className="mx-1" /> {teammate.role}:
-                      {teammate.user.username ? (
+                      <FaUser className="mx-1" /> {teammate.role}:{" "}
+                      {teammate.user ? (
                         teammate.user.username
                       ) : (
                         <Button variant="outline-success" className="m-2">
@@ -82,10 +84,10 @@ function ViewSingleProject(props) {
                       <FaGithub className="mx-1" />
                       <FaLinkedin className="mx-1" />
                     </ListGroup.Item>
-                  </>;
-                })}
+                  </>
+                ))}
 
-                <ListGroup.Item>
+                {/* <ListGroup.Item>
                   <FaUser className="mx-1" /> Front-End Developer
                   <Button variant="outline-success" className="m-2">
                     Join Team
@@ -112,7 +114,7 @@ function ViewSingleProject(props) {
                   <Button variant="outline-success" className="m-2">
                     Join Team
                   </Button>
-                </ListGroup.Item>
+                </ListGroup.Item> */}
               </ListGroup>
               <h5 className="mt-4">Position Openings: 2/5</h5>
             </Form>
@@ -161,23 +163,33 @@ function ViewSingleProject(props) {
             </Form>
 
             <h5 className="mt-4">Investors</h5>
-
-            <Table responsive>
-              <thead>
-                <tr>
-                  <th>Amount Invested</th>
-                  <th>Investor Username</th>
-                </tr>
-              </thead>
-              <tbody>
-                {project.investors.map((investor) => {
+            {project.investors.length ? (
+              <Table responsive>
+                <thead>
                   <tr>
-                    <td>{investor.amount}</td>
-                    <td>{investor.user.username}</td>
-                  </tr>;
-                })}
-              </tbody>
-            </Table>
+                    <th>Amount Invested</th>
+                    <th>Investor Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <>
+                    {project.investors.map((investor) => (
+                      <tr>
+                        <td>
+                          {investor.amount.toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                          })}
+                        </td>
+                        <td>{investor.user.username}</td>
+                      </tr>
+                    ))}
+                  </>
+                </tbody>
+              </Table>
+            ) : (
+              <p>No investors yet</p>
+            )}
           </Card>
         </Modal.Body>
       </Modal>
