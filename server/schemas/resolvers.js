@@ -8,8 +8,8 @@ const resolvers = {
     allProjects: async () => {
       return await Project.find().limit(12).populate('owner', 'username');
     },
-    userProjects: async (parent, args, context) => {
-      return await Project.find({ owner: context.user._id }).populate('owner', 'username');
+    userProjects: async (parent, args) => {
+      return await Project.find(args).populate('owner', 'username');
     },
     projectSearch: async (parent, args) => {
       return await Project.find({ $or: [{ name: { $in: args }}, { tags: { $in: args }}] }).populate('owner', 'username');
@@ -41,8 +41,8 @@ const resolvers = {
     team: async (parent, { project }) => {
       return await Teammate.find({ project: project }).populate('user', 'username');
     },
-    investments: async (parent, args, context) => {
-      return await Investment.find({ user: context.user._id}).populate('project', "name _id");
+    investments: async (parent, args) => {
+      return await Investment.find(args).populate('project', "name _id");
     }
   },
   Mutation: {
@@ -56,19 +56,19 @@ const resolvers = {
 
       return { token, user };
     },
-    addProject: async (parent, args) => {
-      let project = await Project.create(args);
+    addProject: async (parent, args, context) => {
+      let project = await Project.create({...args, owner: context.user._id});
       return project;
     },
     addTeammate: async (parent, args) => {
       return await Teammate.create(args);
     },
-    updateTeammate: async (parent, { _id }, context) => {
-      return await Teammate.findByIdAndUpdate(_id, {user: context.user._id}, { new: true });
+    updateTeammate: async (parent, args) => {
+      return await Teammate.findByIdAndUpdate(args, { new: true });
     },
-    updateUser: async (parent, args, context) => {
+    updateUser: async (parent, args) => {
       if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+        return await User.findByIdAndUpdate(args, { new: true });
       }
 
       throw new AuthenticationError('Not logged in');
