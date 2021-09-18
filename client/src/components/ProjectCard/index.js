@@ -20,7 +20,7 @@ function ProjectCard(project) {
   return (
     <>
       <Card className="my-3 project-card">
-        <div onClick={() => {console.log(_id); setModalId(_id); setModalShow(true);}}>
+        <div onClick={() => {setModalId(_id); setModalShow(true);}}>
           <Card.Header as="h4">{projectName}</Card.Header>
           <Card.Body>
             <Card.Text>

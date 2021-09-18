@@ -7,11 +7,11 @@ function AddProject() {
   const [formState, setFormState] = useState({
     name: "",
     // placeholder ID
-    owner: "613ff48a8f639d27a88c8753",
+    owner: "614543d0a299d23d2871f940",
     description: "",
     image: "",
-    reqFunds: "",
-    tags: "",
+    reqFunds: 0.99,
+    tags: [],
     launch: "",
   });
   const [addProject, { error, data }] = useMutation(ADD_PROJECT);

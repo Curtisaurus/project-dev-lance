@@ -49,7 +49,7 @@ const typeDefs = gql`
     allProjects: [Project]
     userProjects(user: ID!): [Project]
     projectSearch(searchArray: [String]!): [Project]
-    user: User
+    user(_id: ID): User
     project(_id: ID): Project
     team(project: ID): [Teammate]
     investments(user: ID): [Investment]
