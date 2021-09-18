@@ -14,17 +14,27 @@ function ProjectCard(project) {
     acqFunds,
     launch,
     setModalShow,
-    setModalId
+    setModalId,
   } = project;
 
   return (
     <>
       <Card className="my-3 project-card">
+<<<<<<< HEAD
         <div onClick={() => {setModalId(_id); setModalShow(true);}}>
+=======
+        <div
+          onClick={() => {
+            console.log(_id);
+            setModalId(_id);
+            setModalShow(true);
+          }}
+        >
+>>>>>>> main
           <Card.Header as="h4">{projectName}</Card.Header>
           <Card.Body>
             <Card.Text>
-              Created by {ownerName} on {date}.
+              Created by {ownerName} on {date}
             </Card.Text>
             <Card.Text>{description}</Card.Text>
           </Card.Body>

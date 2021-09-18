@@ -1,7 +1,8 @@
 //Added useEffect from react
 import React, { useState, useEffect } from "react";
-import { Form, Button, Alert, Container } from "react-bootstrap";
+import { Form, Button, Alert, Container, Card } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
+import { FaEnvelope, FaLock } from "react-icons/fa";
 //changed login to mutations instead of api
 import { LOGIN } from "../../utils/mutations";
 import Auth from "../../utils/auth";
@@ -63,8 +64,13 @@ const LoginForm = () => {
   // };
   return (
     <>
-      <Container>
-        <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Card className="p-3 m-5">
+        <Form
+          noValidate
+          validated={validated}
+          onSubmit={handleFormSubmit}
+          className="p-4"
+        >
           <Alert
             dismissible
             onClose={() => setShowAlert(false)}
@@ -74,7 +80,9 @@ const LoginForm = () => {
             Something went wrong with your login credentials!
           </Alert>
           <Form.Group>
-            <Form.Label htmlFor="email">Email</Form.Label>
+            <Form.Label htmlFor="email">
+              <FaEnvelope className="mx-1" /> Email
+            </Form.Label>
             <Form.Control
               type="text"
               placeholder="Your email"
@@ -88,7 +96,9 @@ const LoginForm = () => {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group>
-            <Form.Label htmlFor="password">Password</Form.Label>
+            <Form.Label htmlFor="password">
+              <FaLock className="mx-1" /> Password
+            </Form.Label>
             <Form.Control
               type="password"
               placeholder="Your password"
@@ -105,11 +115,12 @@ const LoginForm = () => {
             disabled={!(userFormData.email && userFormData.password)}
             type="submit"
             variant="success"
+            className="my-3"
           >
             Submit
           </Button>
         </Form>
-      </Container>
+      </Card>
     </>
   );
 };

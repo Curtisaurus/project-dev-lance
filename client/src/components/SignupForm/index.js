@@ -1,6 +1,6 @@
 //add in useEffect
 import React, { useState, useEffect } from "react";
-import { Form, Button, Alert, Container } from "react-bootstrap";
+import { Form, Button, Alert, Container, Card } from "react-bootstrap";
 // change to useMutation from apollo
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
@@ -62,9 +62,14 @@ const SignupForm = () => {
   };
   return (
     <>
-      <Container>
+      <Card className="p-3 m-5">
         {/* This is needed for the validation functionality above */}
-        <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+        <Form
+          noValidate
+          validated={validated}
+          onSubmit={handleFormSubmit}
+          className="p-4"
+        >
           {/* show alert if server response is bad */}
           <Alert
             dismissible
@@ -190,10 +195,13 @@ const SignupForm = () => {
             </Form.Control.Feedback>
           </Form.Group>
           <Button
+            className="my-3"
             disabled={
               !(
                 userFormData.username &&
                 userFormData.email &&
+                userFormData.firstName &&
+                userFormData.lastName &&
                 userFormData.password
               )
             }
@@ -203,7 +211,7 @@ const SignupForm = () => {
             Submit
           </Button>
         </Form>
-      </Container>
+      </Card>
     </>
   );
 };

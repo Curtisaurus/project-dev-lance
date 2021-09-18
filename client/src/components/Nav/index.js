@@ -23,11 +23,11 @@ function NavigationBar() {
               <Nav.Link href="/projects" className="text-white mx-3">
                 Discover
               </Nav.Link>
+              <Nav.Link href="/signup" className="text-white mx-3">
+                Sign Up
+              </Nav.Link>
               <Nav.Link href="/login" className="text-white mx-3">
                 Login
-              </Nav.Link>
-              <Nav.Link href="/logout" className="text-white mx-3">
-                Logout
               </Nav.Link>
             </Nav>
             <Link to="/create-project">

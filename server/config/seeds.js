@@ -102,5 +102,12 @@ db.once("open", async () => {
     }  
   ]);
   
+<<<<<<< HEAD
+=======
+  ]);
+
+  console.log("investments seeded");
+  
+>>>>>>> main
   process.exit();
 });
