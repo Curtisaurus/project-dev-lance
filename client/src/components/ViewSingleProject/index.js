@@ -170,10 +170,12 @@ function ViewSingleProject(props) {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>$5,000</td>
-                  <td>Username</td>
-                </tr>
+                {project.investors.map((investor) => {
+                  <tr>
+                    <td>{investor.amount}</td>
+                    <td>{investor.user.username}</td>
+                  </tr>;
+                })}
               </tbody>
             </Table>
           </Card>
