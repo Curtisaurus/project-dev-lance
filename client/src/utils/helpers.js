@@ -54,3 +54,13 @@ export function idbPromise(storeName, method, object) {
     };
   });
 }
+
+export function dateFormat(date) {
+  let dateObj = new Date(parseInt(date));
+
+  const options = { year: "numeric", month: "long", day: "numeric" };
+
+  let formatted = dateObj.toLocaleDateString("en-US", options);
+
+  return formatted;
+}

@@ -2,6 +2,7 @@ import React from "react";
 // import { NavLink } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_PROJECT } from "../../utils/queries";
+import { dateFormat } from "../../utils/helpers";
 import {
   // Container,
   Form,
@@ -24,11 +25,6 @@ function ViewSingleProject(props) {
   const { loading, data, error } = useQuery(QUERY_PROJECT, {
     variables: { project: project },
   });
-
-  // Progress Bar Dynamic Label
-  // const now = 60;
-  // const progressInstance = <ProgressBar now={now} label={`${now}%`} />;
-  // render(progressInstance);
 
   if (!loading && !error) {
     let project = data.project;
@@ -56,10 +52,11 @@ function ViewSingleProject(props) {
           </Button>
           <h5 className="mb-3">
             <FaUser className="mx-1" /> Created by {project.owner.username} on{" "}
-            {project.createdAt}.
+            {dateFormat(project.createdAt)}
           </h5>
           <h5 className="mt-3">
-            <FaRocket className="mx-1" /> Product Launch Date: [{project.launch}
+            <FaRocket className="mx-1" /> Product Launch Date:{" "}
+            {dateFormat(project.launch)}
           </h5>
           <Card className="bg-light p-4">
             <p>{project.description}</p>
@@ -71,6 +68,23 @@ function ViewSingleProject(props) {
             <Form>
               <h5>Roles & Teammates</h5>
               <ListGroup variant="flush">
+                {project.team.map((teammate) => {
+                  <>
+                    <ListGroup.Item key={teammate.role}>
+                      <FaUser className="mx-1" /> {teammate.role}:
+                      {teammate.user.username ? (
+                        teammate.user.username
+                      ) : (
+                        <Button variant="outline-success" className="m-2">
+                          Join Team
+                        </Button>
+                      )}{" "}
+                      <FaGithub className="mx-1" />
+                      <FaLinkedin className="mx-1" />
+                    </ListGroup.Item>
+                  </>;
+                })}
+
                 <ListGroup.Item>
                   <FaUser className="mx-1" /> Front-End Developer
                   <Button variant="outline-success" className="m-2">
@@ -107,7 +121,20 @@ function ViewSingleProject(props) {
           {/* Investors Section */}
           <h3 className="mt-4">Project Funding</h3>
           <Card className="bg-light p-4">
-            <h5>Funding Goal: {project.reqFunds}</h5>
+            <h5>
+              Funding Goal:{" "}
+              {project.reqFunds.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </h5>
+            <h5>
+              Funds Acquired:{" "}
+              {project.acqFunds.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </h5>
             <ProgressBar
               now={(project.acqFunds / project.reqFunds) * 100}
               label={`${(project.acqFunds / project.reqFunds) * 100}%`}
